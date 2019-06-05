@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="ExitjButton" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="InstructionsjButton" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="SavejButton" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="NewGamejButton" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+                  <Component id="LoadGamejButton" alignment="0" min="-2" pref="147" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Component id="jPanelInstruction" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jPanelNewGame" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+              <Component id="NewGamejButton" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Component id="LoadGamejButton" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="InstructionsjButton" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="SavejButton" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Component id="ExitjButton" min="-2" pref="60" max="-2" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jPanelInstruction" min="-2" max="-2" attributes="0"/>
+                  <Component id="jPanelNewGame" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JButton" name="NewGamejButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nueva Partida"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewGamejButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="InstructionsjButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Instrucciones"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InstructionsjButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="SavejButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Guardar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="LoadGamejButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cargar Partida"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ExitjButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Salir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExitjButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JPanel" name="jPanelNewGame">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="AddCityjButton" max="32767" attributes="0"/>
+                      <Component id="CityDistancejLabel" max="32767" attributes="0"/>
+                      <Component id="CityNamejLabel1" max="32767" attributes="0"/>
+                      <Component id="AntsNumjLabel" max="32767" attributes="0"/>
+                      <Component id="IterationsjLabel" alignment="0" pref="143" max="32767" attributes="0"/>
+                      <Component id="VariablesValuesjLabel1" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="DeleteCityjButton" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="CityDistanceInput" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="CityNameInput" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="IterationsInput" min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Component id="DefaultValuesButton" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="VariableValuesInput" max="32767" attributes="0"/>
+                              <Component id="CustomValuesButton" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="146" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="AntsNumjLabel" min="-2" pref="33" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="AddCityjButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="DeleteCityjButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="CityNamejLabel1" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="CityNameInput" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="CityDistancejLabel" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="CityDistanceInput" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="IterationsjLabel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="IterationsInput" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="VariablesValuesjLabel1" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="DefaultValuesButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="CustomValuesButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="VariableValuesInput" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="AntsNumjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cantidad de hormigas"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="CityNamejLabel1">
+        </Component>
+        <Component class="javax.swing.JLabel" name="CityDistancejLabel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="IterationsjLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xfa;mero de iteraciones "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CityDistanceInput">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityDistanceInputActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="CityNameInput">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityNameInputActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="AddCityjButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Agregar ciudad"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddCityjButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="DeleteCityjButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Eliminar ciudad"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="IterationsInput">
+        </Component>
+        <Component class="javax.swing.JLabel" name="VariablesValuesjLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Valores de "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="DefaultValuesButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Por defecto"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="CustomValuesButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Personalizados"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CustomValuesButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="VariableValuesInput">
+        </Component>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="jPanelInstruction">
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="333" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace min="0" pref="317" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+    </Container>
+  </SubComponents>
+</Form>

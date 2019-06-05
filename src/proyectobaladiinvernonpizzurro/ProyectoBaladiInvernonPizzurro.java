@@ -5,6 +5,8 @@
  */
 package proyectobaladiinvernonpizzurro;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Fernando Baladi
@@ -16,6 +18,11 @@ public class ProyectoBaladiInvernonPizzurro {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Vista v= new Vista();
+         v.setVisible(true);         
+         v.setResizable(false);
+         v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         v.setLocationRelativeTo(null);
     }
     
 }
