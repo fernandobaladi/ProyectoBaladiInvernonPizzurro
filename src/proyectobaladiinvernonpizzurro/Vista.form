@@ -134,27 +134,28 @@
                                       <Component id="VariablesValuesjLabel1" alignment="0" max="32767" attributes="0"/>
                                       <Component id="IterationsjLabel" pref="143" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace pref="33" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace pref="33" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="IterationsInput" pref="304" max="32767" attributes="0"/>
-                                                  <Component id="CityNameInput" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="AntsNumInput" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="CityDistanceInput" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="DefaultValuesButton" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
-                                                  <Component id="CustomValuesButton" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                      </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="96" max="-2" attributes="0"/>
-                                          <Component id="DeleteCityjButton" min="-2" pref="139" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="DefaultValuesButton" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="CustomValuesButton" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="DeleteCityjButton" alignment="0" min="-2" pref="139" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="AntsNumInput" alignment="0" pref="172" max="32767" attributes="0"/>
+                                              <Component id="CityNameInput" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="CityDistanceInput" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="IterationsInput" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="CityNameValidationButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Component id="CityDistanceValidationButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Component id="AntsNumValidationButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                              <Component id="IterationsValidationButton" min="-2" pref="95" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -172,6 +173,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AntsNumjLabel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="AntsNumInput" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="AntsNumValidationButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -183,17 +185,24 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="CityNamejLabel1" alignment="1" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="CityNameInput" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                                  <Component id="CityNameInput" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="CityNameValidationButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                           <Component id="CityDistancejLabel" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="CityDistanceInput" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                          <Component id="CityDistanceInput" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="CityDistanceValidationButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="IterationsjLabel" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="IterationsInput" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="IterationsValidationButton" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -338,6 +347,57 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AntsNumInputActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CityNameValidationButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder>
+                  <Color PropertyName="shadowInner" blue="0" green="66" red="0" type="rgb"/>
+                </BevelBorder>
+              </Border>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CityNameValidationButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="CityDistanceValidationButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder>
+                  <Color PropertyName="shadowInner" blue="0" green="66" red="0" type="rgb"/>
+                </BevelBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="AntsNumValidationButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder>
+                  <Color PropertyName="shadowInner" blue="0" green="66" red="0" type="rgb"/>
+                </BevelBorder>
+              </Border>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="IterationsValidationButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Aceptar"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
+                <BevelBorder>
+                  <Color PropertyName="shadowInner" blue="0" green="66" red="0" type="rgb"/>
+                </BevelBorder>
+              </Border>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

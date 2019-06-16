@@ -64,6 +64,10 @@ public class Vista extends javax.swing.JFrame {
         CustomValuesButton = new javax.swing.JRadioButton();
         VariableValuesInput = new javax.swing.JTextField();
         AntsNumInput = new javax.swing.JTextField();
+        CityNameValidationButton = new javax.swing.JButton();
+        CityDistanceValidationButton = new javax.swing.JButton();
+        AntsNumValidationButton = new javax.swing.JButton();
+        IterationsValidationButton = new javax.swing.JButton();
         jPanelMenu = new javax.swing.JPanel();
         InstructionsjButton = new javax.swing.JButton();
         SavejButton = new javax.swing.JButton();
@@ -166,6 +170,23 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
+        CityNameValidationButton.setText("Aceptar");
+        CityNameValidationButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 102, 0)));
+        CityNameValidationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CityNameValidationButtonActionPerformed(evt);
+            }
+        });
+
+        CityDistanceValidationButton.setText("Aceptar");
+        CityDistanceValidationButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 102, 0)));
+
+        AntsNumValidationButton.setText("Aceptar");
+        AntsNumValidationButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 102, 0)));
+
+        IterationsValidationButton.setText("Aceptar");
+        IterationsValidationButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(0, 102, 0)));
+
         javax.swing.GroupLayout jPanelNewGameLayout = new javax.swing.GroupLayout(jPanelNewGame);
         jPanelNewGame.setLayout(jPanelNewGameLayout);
         jPanelNewGameLayout.setHorizontalGroup(
@@ -189,23 +210,25 @@ public class Vista extends javax.swing.JFrame {
                                     .addComponent(AntsNumjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(VariablesValuesjLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(IterationsjLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                                 .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelNewGameLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                        .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(IterationsInput, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
-                                                .addComponent(CityNameInput, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(AntsNumInput, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(CityDistanceInput, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addGroup(jPanelNewGameLayout.createSequentialGroup()
-                                                .addComponent(DefaultValuesButton)
-                                                .addGap(72, 72, 72)
-                                                .addComponent(CustomValuesButton))))
+                                        .addComponent(DefaultValuesButton)
+                                        .addGap(72, 72, 72)
+                                        .addComponent(CustomValuesButton))
+                                    .addComponent(DeleteCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanelNewGameLayout.createSequentialGroup()
-                                        .addGap(96, 96, 96)
-                                        .addComponent(DeleteCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(AntsNumInput, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                                            .addComponent(CityNameInput, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(CityDistanceInput, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(IterationsInput, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addGap(37, 37, 37)
+                                        .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(AntsNumValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(IterationsValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addContainerGap(46, Short.MAX_VALUE))))
         );
         jPanelNewGameLayout.setVerticalGroup(
@@ -214,7 +237,8 @@ public class Vista extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AntsNumjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AntsNumValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,14 +248,19 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
                         .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CityNamejLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CityNameInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(65, 65, 65)
                         .addComponent(CityDistancejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(CityDistanceInput, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(59, 59, 59)
                 .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IterationsValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DefaultValuesButton)
@@ -402,6 +431,10 @@ public class Vista extends javax.swing.JFrame {
         VariableValuesInput.setEnabled(false);
     }//GEN-LAST:event_DefaultValuesButtonActionPerformed
 
+    private void CityNameValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameValidationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CityNameValidationButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -441,10 +474,13 @@ public class Vista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCityjButton;
     private javax.swing.JTextField AntsNumInput;
+    private javax.swing.JButton AntsNumValidationButton;
     private javax.swing.JLabel AntsNumjLabel;
     private javax.swing.JTextField CityDistanceInput;
+    private javax.swing.JButton CityDistanceValidationButton;
     private javax.swing.JLabel CityDistancejLabel;
     private javax.swing.JTextField CityNameInput;
+    private javax.swing.JButton CityNameValidationButton;
     private javax.swing.JLabel CityNamejLabel1;
     private javax.swing.JRadioButton CustomValuesButton;
     private javax.swing.JRadioButton DefaultValuesButton;
@@ -452,6 +488,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton ExitjButton;
     private javax.swing.JButton InstructionsjButton;
     private javax.swing.JTextField IterationsInput;
+    private javax.swing.JButton IterationsValidationButton;
     private javax.swing.JLabel IterationsjLabel;
     private javax.swing.JButton LoadGamejButton;
     private javax.swing.JButton NewGamejButton;
