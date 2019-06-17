@@ -41,10 +41,16 @@ public class Vista extends javax.swing.JFrame {
         jPanelInstruction.setVisible(false);
         NewCityjPanel.setVisible(false);
         DeleteCityjPanel.setVisible(false);
+        AddCityjButton.setEnabled(false);
+        DeleteCityjButton.setEnabled(false);
         jPanelInstruction.setSize(720, 720);
+        jPanelGame.setVisible(false);
+        jPanelMain.setSize(720,720);
+        jPanelMain.setVisible(true);
+        jPanelGame.setSize(720, 720);
         
         //Texto a mostrar en dos de los labels
-        CityNamejLabel1.setText("Nombre de la ciudad nº");
+        CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
         CityDistancejLabel.setText("Distancia respecto a ");
         
         /*NewGamejButton.setBackground(Color.cyan);
@@ -52,14 +58,14 @@ public class Vista extends javax.swing.JFrame {
                           
         if (CustomValuesButton.isSelected()) {
         
-            βValueInput.setEnabled(true);
-            αValueInput.setEnabled(true);
-            ρValueInput.setEnabled(true);
+            βValueInput.setEditable(true);
+            αValueInput.setEditable(true);
+            ρValueInput.setEditable(true);
         } 
         else {
-            βValueInput.setEnabled(false);
-            αValueInput.setEnabled(false);
-            ρValueInput.setEnabled(false);
+            βValueInput.setEditable(false);
+            αValueInput.setEditable(false);
+            ρValueInput.setEditable(false);
         }
         
         UIManager.put("TextField.disabledBackground", Color.RED);
@@ -75,12 +81,13 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelGame = new javax.swing.JPanel();
         jPanelInstruction = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanelNewGame = new javax.swing.JPanel();
         NewGameOptionsjPanel = new javax.swing.JPanel();
         AntsNumjLabel = new javax.swing.JLabel();
         AntsNumInput = new javax.swing.JTextField();
-        AntsNumValidationButton = new javax.swing.JButton();
         CustomValuesButton = new javax.swing.JRadioButton();
         DefaultValuesButton = new javax.swing.JRadioButton();
         VariablesValuesjLabel1 = new javax.swing.JLabel();
@@ -90,6 +97,9 @@ public class Vista extends javax.swing.JFrame {
         αValueInput = new javax.swing.JTextField();
         ρVariableValuejLabel = new javax.swing.JLabel();
         ρValueInput = new javax.swing.JTextField();
+        GameOptionsValidationButton = new javax.swing.JButton();
+        IterationsInput = new javax.swing.JTextField();
+        IterationsjLabel = new javax.swing.JLabel();
         DeleteCityjButton = new javax.swing.JButton();
         AddCityjButton = new javax.swing.JButton();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -100,9 +110,6 @@ public class Vista extends javax.swing.JFrame {
         CityDistancejLabel = new javax.swing.JLabel();
         CityDistanceInput = new javax.swing.JTextField();
         CityDistanceValidationButton = new javax.swing.JButton();
-        IterationsValidationButton = new javax.swing.JButton();
-        IterationsInput = new javax.swing.JTextField();
-        IterationsjLabel = new javax.swing.JLabel();
         ConfirmNewCityjButton = new javax.swing.JButton();
         DeleteCityjPanel = new javax.swing.JPanel();
         Cities1 = new javax.swing.JPanel();
@@ -113,25 +120,47 @@ public class Vista extends javax.swing.JFrame {
         LoadGamejButton = new javax.swing.JButton();
         ExitjButton = new javax.swing.JButton();
         NewGamejButton = new javax.swing.JButton();
+        jPanelMain = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 800));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
+
+        jPanelGame.setBackground(new java.awt.Color(213, 204, 206));
+        jPanelGame.setPreferredSize(new java.awt.Dimension(600, 500));
+
+        javax.swing.GroupLayout jPanelGameLayout = new javax.swing.GroupLayout(jPanelGame);
+        jPanelGame.setLayout(jPanelGameLayout);
+        jPanelGameLayout.setHorizontalGroup(
+            jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+        jPanelGameLayout.setVerticalGroup(
+            jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 688, Short.MAX_VALUE)
+        );
 
         jPanelInstruction.setBackground(new java.awt.Color(213, 204, 206));
         jPanelInstruction.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Instrucciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
         jPanelInstruction.setPreferredSize(new java.awt.Dimension(600, 500));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/casa.jpg"))); // NOI18N
+
         javax.swing.GroupLayout jPanelInstructionLayout = new javax.swing.GroupLayout(jPanelInstruction);
         jPanelInstruction.setLayout(jPanelInstructionLayout);
         jPanelInstructionLayout.setHorizontalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 588, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelInstructionLayout.createSequentialGroup()
+                .addContainerGap(451, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(87, 87, 87))
         );
         jPanelInstructionLayout.setVerticalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLabel1)
+                .addContainerGap(564, Short.MAX_VALUE))
         );
 
         jPanelNewGame.setBackground(new java.awt.Color(213, 204, 206));
@@ -151,16 +180,6 @@ public class Vista extends javax.swing.JFrame {
         AntsNumInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AntsNumInputActionPerformed(evt);
-            }
-        });
-
-        AntsNumValidationButton.setBackground(new java.awt.Color(164, 225, 3));
-        AntsNumValidationButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        AntsNumValidationButton.setText("Aceptar");
-        AntsNumValidationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        AntsNumValidationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AntsNumValidationButtonActionPerformed(evt);
             }
         });
 
@@ -206,6 +225,23 @@ public class Vista extends javax.swing.JFrame {
         ρValueInput.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         ρValueInput.setBorder(null);
 
+        GameOptionsValidationButton.setBackground(new java.awt.Color(164, 225, 3));
+        GameOptionsValidationButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        GameOptionsValidationButton.setText("Aceptar");
+        GameOptionsValidationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
+        GameOptionsValidationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GameOptionsValidationButtonActionPerformed(evt);
+            }
+        });
+
+        IterationsInput.setBackground(new java.awt.Color(192, 178, 181));
+        IterationsInput.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        IterationsInput.setBorder(null);
+
+        IterationsjLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        IterationsjLabel.setText("Número de iteraciones ");
+
         DeleteCityjButton.setBackground(new java.awt.Color(249, 173, 107));
         DeleteCityjButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         DeleteCityjButton.setText("Eliminar ciudad");
@@ -230,51 +266,51 @@ public class Vista extends javax.swing.JFrame {
         NewGameOptionsjPanel.setLayout(NewGameOptionsjPanelLayout);
         NewGameOptionsjPanelLayout.setHorizontalGroup(
             NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
+            .addGroup(NewGameOptionsjPanelLayout.createSequentialGroup()
+                .addContainerGap(165, Short.MAX_VALUE)
                 .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(NewGameOptionsjPanelLayout.createSequentialGroup()
-                        .addGap(83, 83, 83)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
                         .addComponent(AddCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(DeleteCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
-                            .addComponent(βVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(βValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(αVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(αValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ρVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ρValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
-                            .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, NewGameOptionsjPanelLayout.createSequentialGroup()
-                                    .addComponent(AntsNumjLabel)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(NewGameOptionsjPanelLayout.createSequentialGroup()
-                                    .addComponent(VariablesValuesjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(3, 3, 3)
-                                    .addComponent(DefaultValuesButton)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CustomValuesButton, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(AntsNumValidationButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
+                        .addComponent(βVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(βValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(αVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(αValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ρVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ρValueInput, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
+                        .addComponent(VariablesValuesjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
+                        .addComponent(DefaultValuesButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(CustomValuesButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
+                        .addComponent(IterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(GameOptionsValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
+                        .addComponent(AntsNumjLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         NewGameOptionsjPanelLayout.setVerticalGroup(
             NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewGameOptionsjPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AntsNumjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(AntsNumValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(AntsNumInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CustomValuesButton)
                     .addComponent(VariablesValuesjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +323,12 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(βVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(αVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ρVariableValuejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(GameOptionsValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(NewGameOptionsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -338,23 +379,6 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        IterationsValidationButton.setBackground(new java.awt.Color(164, 225, 3));
-        IterationsValidationButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        IterationsValidationButton.setText("Aceptar");
-        IterationsValidationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        IterationsValidationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IterationsValidationButtonActionPerformed(evt);
-            }
-        });
-
-        IterationsInput.setBackground(new java.awt.Color(215, 214, 213));
-        IterationsInput.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        IterationsInput.setBorder(null);
-
-        IterationsjLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        IterationsjLabel.setText("Número de iteraciones ");
-
         ConfirmNewCityjButton.setBackground(new java.awt.Color(164, 225, 3));
         ConfirmNewCityjButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ConfirmNewCityjButton.setText("Guardar ciudad");
@@ -370,31 +394,25 @@ public class Vista extends javax.swing.JFrame {
         NewCityjPanelLayout.setHorizontalGroup(
             NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewCityjPanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(NewCityjPanelLayout.createSequentialGroup()
                         .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(CityDistancejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(NewCityjPanelLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(CityDistancejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(NewCityjPanelLayout.createSequentialGroup()
-                                .addGap(114, 114, 114)
-                                .addComponent(CityNamejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(28, 28, 28)
+                                .addComponent(CityNamejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(38, 38, 38)
                         .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IterationsValidationButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewCityjPanelLayout.createSequentialGroup()
-                        .addGap(333, 333, 333)
+                        .addGap(295, 295, 295)
                         .addComponent(ConfirmNewCityjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
         NewCityjPanelLayout.setVerticalGroup(
             NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -405,19 +423,15 @@ public class Vista extends javax.swing.JFrame {
                     .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31)
-                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CityDistancejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(IterationsInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IterationsValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(IterationsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
+                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CityDistancejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(59, 59, 59)
                 .addComponent(ConfirmNewCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77))
+                .addGap(84, 84, 84))
         );
 
         DeleteCityjPanel.setBackground(new java.awt.Color(192, 178, 181));
@@ -432,7 +446,7 @@ public class Vista extends javax.swing.JFrame {
         Cities1.setLayout(Cities1Layout);
         Cities1Layout.setHorizontalGroup(
             Cities1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 526, Short.MAX_VALUE)
         );
         Cities1Layout.setVerticalGroup(
             Cities1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,27 +464,7 @@ public class Vista extends javax.swing.JFrame {
         );
         DeleteCityjPanelLayout.setVerticalGroup(
             DeleteCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DeleteCityjPanelLayout.createSequentialGroup()
-                .addComponent(Cities1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 22, Short.MAX_VALUE))
-        );
-
-        jLayeredPane1.setLayer(NewCityjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(DeleteCityjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
-        jLayeredPane1.setLayout(jLayeredPane1Layout);
-        jLayeredPane1Layout.setHorizontalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(DeleteCityjPanel, javax.swing.GroupLayout.Alignment.TRAILING, 578, 578, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jLayeredPane1Layout.setVerticalGroup(
-            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, Short.MAX_VALUE)
-            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(DeleteCityjPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Cities1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         StartGamejButton.setBackground(new java.awt.Color(164, 225, 3));
@@ -483,31 +477,58 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
+        jLayeredPane1.setLayer(NewCityjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(DeleteCityjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(StartGamejButton, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 564, Short.MAX_VALUE)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(StartGamejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addComponent(DeleteCityjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(StartGamejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(DeleteCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(65, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanelNewGameLayout = new javax.swing.GroupLayout(jPanelNewGame);
         jPanelNewGame.setLayout(jPanelNewGameLayout);
         jPanelNewGameLayout.setHorizontalGroup(
             jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelNewGameLayout.createSequentialGroup()
-                .addGroup(jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(NewGameOptionsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLayeredPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
-                        .addGap(495, 495, 495)
-                        .addComponent(StartGamejButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(NewGameOptionsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane1))
         );
         jPanelNewGameLayout.setVerticalGroup(
             jPanelNewGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelNewGameLayout.createSequentialGroup()
                 .addComponent(NewGameOptionsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(StartGamejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLayeredPane1))
         );
 
         jPanelMenu.setBackground(new java.awt.Color(213, 204, 206));
@@ -572,7 +593,7 @@ public class Vista extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(NewGamejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LoadGamejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
+                    .addComponent(LoadGamejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                     .addComponent(InstructionsjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(SavejButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ExitjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -589,8 +610,30 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(InstructionsjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(SavejButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ExitjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanelMain.setBackground(new java.awt.Color(213, 204, 206));
+        jPanelMain.setPreferredSize(new java.awt.Dimension(600, 500));
+
+        jLabel2.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
+        jPanelMain.setLayout(jPanelMainLayout);
+        jPanelMainLayout.setHorizontalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(323, Short.MAX_VALUE))
+        );
+        jPanelMainLayout.setVerticalGroup(
+            jPanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelMainLayout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -602,19 +645,26 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jPanelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jPanelNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(4, 4, 4)
                 .addComponent(jPanelInstruction, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanelNewGame, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelMenu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelInstruction, javax.swing.GroupLayout.DEFAULT_SIZE, 555, Short.MAX_VALUE))
-                .addGap(34, 34, 34))
+                    .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPanelInstruction, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelNewGame, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                        .addComponent(jPanelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
+                        .addComponent(jPanelGame, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -624,11 +674,14 @@ public class Vista extends javax.swing.JFrame {
          
         //Estados de los paneles y botones
         NewCityjPanel.setVisible(false);
+        jPanelMain.setVisible(false);
         DeleteCityjPanel.setVisible(false);
         jPanelInstruction.setVisible(false);
         jPanelNewGame.setVisible(true);
         CustomValuesButton.setSelected(false);
         DefaultValuesButton.setSelected(true);
+        AddCityjButton.setEnabled(false);
+        DeleteCityjButton.setEnabled(false);
         cityCounter=0;
         
         //Vaciar los campos de inputs
@@ -651,6 +704,7 @@ public class Vista extends javax.swing.JFrame {
     private void InstructionsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructionsjButtonActionPerformed
         
         jPanelNewGame.setVisible(false);
+        jPanelMain.setVisible(false);
         jPanelInstruction.setVisible(true);
         
         
@@ -668,15 +722,24 @@ public class Vista extends javax.swing.JFrame {
         }
         else {
 
-            if (!AntsNumInput.getText().equals("") && (CustomValuesButton.isSelected() || DefaultValuesButton.isSelected())) {
+            if (!AntsNumInput.getText().equals("") && (CustomValuesButton.isSelected() || DefaultValuesButton.isSelected()) &&
+                    !IterationsInput.getText().equals("")) {
+                
+                if(CustomValuesButton.isSelected()){
 
-                if (βValueInput.getText().equals("") || αValueInput.getText().equals("") || ρValueInput.getText().equals("")) {
+                    if (βValueInput.getText().equals("") || αValueInput.getText().equals("") || ρValueInput.getText().equals("")) {
 
-                    JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
+                        JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
+                    }
                 }
                 else {
 
-                    JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas empezar tu partida con " + cityCounter + " ciudades? ");
+                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas empezar tu partida con " + cityCounter + " ciudades? ") == 0) {
+                    
+                        
+                        jPanelNewGame.setVisible(false);
+                        jPanelGame.setVisible(true);
+                    }
 
                 }
             }
@@ -686,87 +749,62 @@ public class Vista extends javax.swing.JFrame {
             }
 
         }
+        
     }//GEN-LAST:event_StartGamejButtonActionPerformed
 
-    private void ConfirmNewCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmNewCityjButtonActionPerformed
+    private void GameOptionsValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GameOptionsValidationButtonActionPerformed
+       
+        
+        if (!AntsNumInput.getText().equals("") && (CustomValuesButton.isSelected() || DefaultValuesButton.isSelected()) &&
+                    !IterationsInput.getText().equals("")) {
+            
+            if(CustomValuesButton.isSelected()){
 
-        if (IterationsInput.equals("")) {
+                if (βValueInput.getText().equals("") || αValueInput.getText().equals("") || ρValueInput.getText().equals("")) {
+
+                    JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
+                }
+            }
+            else {
+
+                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ") == 0) {
+
+                    AntsNumInput.setEditable(false);
+                    IterationsInput.setEditable(false);
+                    CustomValuesButton.setEnabled(false);
+                    DefaultValuesButton.setEnabled(false);
+                    AddCityjButton.setEnabled(true);
+                    DeleteCityjButton.setEnabled(true);
+                }
+
+            }
+        }
+        else {
 
             JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
         }
-        else{
-
-            cityCounter++;
-        }
-    }//GEN-LAST:event_ConfirmNewCityjButtonActionPerformed
-
-    private void IterationsValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IterationsValidationButtonActionPerformed
-
-        CustomValuesButton.setEnabled(true);
-        DefaultValuesButton.setEnabled(true);
-    }//GEN-LAST:event_IterationsValidationButtonActionPerformed
-
-    private void CityDistanceValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceValidationButtonActionPerformed
-
-        if (!CityDistanceInput.getText().equals("")) {
-
-            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar esta distancia? ") == 0) {
-
-                CityDistanceInput.setEnabled(false);
-                IterationsInput.setEnabled(true);
-            }
-        }
-        else {
-
-            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-            IterationsInput.setEnabled(false);
-        }
-    }//GEN-LAST:event_CityDistanceValidationButtonActionPerformed
-
-    private void CityDistanceInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CityDistanceInputActionPerformed
-
-    private void CityNameValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameValidationButtonActionPerformed
-
-        if (!CityNameInput.getText().equals("")) {
-
-            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar ese nombre para tu ciudad? ") == 0) {
-
-                CityNameInput.setEnabled(false);
-                CityDistanceInput.setEnabled(true);
-            }
-        }
-        else {
-
-            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-            CityDistanceInput.setEnabled(false);
-        }
-    }//GEN-LAST:event_CityNameValidationButtonActionPerformed
-
-    private void CityNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameInputActionPerformed
-
-    }//GEN-LAST:event_CityNameInputActionPerformed
+    }//GEN-LAST:event_GameOptionsValidationButtonActionPerformed
 
     private void AddCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityjButtonActionPerformed
 
         //volver a inicializar los botones y mostrar la pantalla de nuevo juego
         DeleteCityjPanel.setVisible(false);
         NewCityjPanel.setVisible(true);
-        CityNameInput.setEnabled(true);
-        CityDistanceInput.setEnabled(false);
-        IterationsInput.setEnabled(false);
+        CityNameInput.setEditable(true);
+        CityDistanceInput.setEditable(false);
+        ConfirmNewCityjButton.setEnabled(true);
+        CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
 
         //Vaciar los campos de inputs
         CityNameInput.setText("");
-        CityDistanceInput.setText("");
-        IterationsInput.setText("");
+        CityDistanceInput.setText("");        
     }//GEN-LAST:event_AddCityjButtonActionPerformed
 
     private void DeleteCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCityjButtonActionPerformed
 
         NewCityjPanel.setVisible(false);
         DeleteCityjPanel.setVisible(true);
+        Cities1.removeAll();
         
         //prueba de que funcionen las cosas de los botones
         String names1[] = {"a", "b", "c", "d", "e","f", "g", "h", "i", "j","k", "l", "m", "n", "o",null, "q", null, null, null};
@@ -788,36 +826,78 @@ public class Vista extends javax.swing.JFrame {
     private void DefaultValuesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DefaultValuesButtonActionPerformed
 
         CustomValuesButton.setSelected(false);
-        βValueInput.setEnabled(false);
-        αValueInput.setEnabled(false);
-        ρValueInput.setEnabled(false);
+        βValueInput.setEditable(false);
+        αValueInput.setEditable(false);
+        ρValueInput.setEditable(false);
     }//GEN-LAST:event_DefaultValuesButtonActionPerformed
 
     private void CustomValuesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CustomValuesButtonActionPerformed
 
-        βValueInput.setEnabled(true);
-        αValueInput.setEnabled(true);
-        ρValueInput.setEnabled(true);
+        βValueInput.setEditable(true);
+        αValueInput.setEditable(true);
+        ρValueInput.setEditable(true);
         DefaultValuesButton.setSelected(false);
     }//GEN-LAST:event_CustomValuesButtonActionPerformed
-
-    private void AntsNumValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AntsNumValidationButtonActionPerformed
-
-        if (!CityDistanceInput.getText().equals("")) {
-
-            JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas esta cantidad de hormigas? ");
-
-        }
-        else {
-
-            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-
-        }
-    }//GEN-LAST:event_AntsNumValidationButtonActionPerformed
 
     private void AntsNumInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AntsNumInputActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AntsNumInputActionPerformed
+
+    private void ConfirmNewCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmNewCityjButtonActionPerformed
+
+        if (CityNameInput.isEditable() || CityDistanceInput.isEditable()) {
+
+            JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
+        }
+        else{
+            
+            cityCounter++;
+            ConfirmNewCityjButton.setEnabled(false);
+                    
+        }
+    }//GEN-LAST:event_ConfirmNewCityjButtonActionPerformed
+
+    private void CityDistanceValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceValidationButtonActionPerformed
+
+        if (!CityDistanceInput.getText().equals("")) {
+
+            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar esta distancia? ") == 0) {
+
+                //Falta colocar que esto suceda solo despues de recorrer todo el grafo 
+                CityDistanceInput.setEditable(false);
+                
+            }
+        }
+        else {
+
+            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+        }
+    }//GEN-LAST:event_CityDistanceValidationButtonActionPerformed
+
+    private void CityDistanceInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CityDistanceInputActionPerformed
+
+    private void CityNameValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameValidationButtonActionPerformed
+
+        if (!CityNameInput.getText().equals("")) {
+
+            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar ese nombre para tu ciudad? ") == 0) {
+
+                CityNameInput.setEditable(false);
+                CityDistanceInput.setEditable(true);
+            }
+        }
+        else {
+
+            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+            CityDistanceInput.setEditable(false);
+        }
+    }//GEN-LAST:event_CityNameValidationButtonActionPerformed
+
+    private void CityNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameInputActionPerformed
+
+    }//GEN-LAST:event_CityNameInputActionPerformed
 
     private void drawButtonCities (String [] CityNames) {
     
@@ -886,6 +966,7 @@ public class Vista extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Vista().setVisible(true);
+                
             }
         });
         
@@ -894,7 +975,6 @@ public class Vista extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCityjButton;
     private javax.swing.JTextField AntsNumInput;
-    private javax.swing.JButton AntsNumValidationButton;
     private javax.swing.JLabel AntsNumjLabel;
     private javax.swing.JPanel Cities1;
     private javax.swing.JTextField CityDistanceInput;
@@ -909,9 +989,9 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton DeleteCityjButton;
     private javax.swing.JPanel DeleteCityjPanel;
     private javax.swing.JButton ExitjButton;
+    private javax.swing.JButton GameOptionsValidationButton;
     private javax.swing.JButton InstructionsjButton;
     private javax.swing.JTextField IterationsInput;
-    private javax.swing.JButton IterationsValidationButton;
     private javax.swing.JLabel IterationsjLabel;
     private javax.swing.JButton LoadGamejButton;
     private javax.swing.JPanel NewCityjPanel;
@@ -920,8 +1000,12 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton SavejButton;
     private javax.swing.JButton StartGamejButton;
     private javax.swing.JLabel VariablesValuesjLabel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
+    private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelNewGame;
     private javax.swing.JTextField αValueInput;
