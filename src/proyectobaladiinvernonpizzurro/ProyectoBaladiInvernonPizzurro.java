@@ -23,6 +23,18 @@ public class ProyectoBaladiInvernonPizzurro {
          v.setResizable(false);
          v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          v.setLocationRelativeTo(null);
+        Hormiga[] colonia = new Hormiga[v.nHormigas];
+        for (int i = 0; i < colonia.length; i++) {
+            Hormiga h = new Hormiga( v.listaDeCiudades.pFisrt, v.cityCounter+1);
+            colonia[i]=h;
+        }
+    }
+    
+    public static void escogerCiudadParaHormiga(ListaVertices lista, int cityCounter){
+        int n = cityCounter+1;
+        int m = (int) Math.random()+n;
+        System.out.println("Me sabe a bola");
+    
     }
     
 }

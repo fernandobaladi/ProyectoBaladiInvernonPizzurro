@@ -13,9 +13,11 @@ public class Hormiga {
     public int nCiudades; //Al saber el número de ciudades se pude deducir cuántas faltan por recorrer
     public int[] cRecorridas; //Al saber cuáles ciudades se recorrieron se puede saber cuáles quedan por recorrer
     public NodoVertice ciudadInicial;
+    public NodoVertice ciudadActual;
 
     public Hormiga(NodoVertice ciudadInicial, int nCiudades) {
         this.ciudadInicial = ciudadInicial;
+        this.ciudadActual = ciudadInicial;
         this.nCiudades = nCiudades;
         this.cRecorridas = new int[nCiudades-1];
         for (int i = 0; i < this.cRecorridas.length; i++) {

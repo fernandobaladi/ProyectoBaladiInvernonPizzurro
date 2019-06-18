@@ -28,10 +28,14 @@ import javax.swing.UIManager;
 public class Vista extends javax.swing.JFrame {
     
     //Contador de ciudades existentes en la partida
-        int cityCounter=0;
+        int cityCounter = 0;
+        int nHormigas = 0;
+        int nIteraciones = 0; 
         JButton jButton1 = new javax.swing.JButton();
         String CityNames[] = new String [20];
-    
+        ListaVertices listaDeCiudades = new ListaVertices("Lista de ciudades");
+        Hormiga[] colonia;
+        
     public Vista() {
                 
         initComponents();
@@ -739,6 +743,10 @@ public class Vista extends javax.swing.JFrame {
                         
                         jPanelNewGame.setVisible(false);
                         jPanelGame.setVisible(true);
+                        for (int i = 0; i < colonia.length; i++) {
+                            Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter);
+                            colonia[i]=h;
+                        }
                     }
 
                 }
@@ -770,7 +778,10 @@ public class Vista extends javax.swing.JFrame {
                 if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ") == 0) {
 
                     AntsNumInput.setEditable(false);
+                    nHormigas = Integer.parseInt(AntsNumInput.getText());
+                    colonia = new Hormiga[nHormigas];
                     IterationsInput.setEditable(false);
+                    nIteraciones = Integer.parseInt(IterationsInput.getText());
                     CustomValuesButton.setEnabled(false);
                     DefaultValuesButton.setEnabled(false);
                     AddCityjButton.setEnabled(true);
@@ -852,6 +863,7 @@ public class Vista extends javax.swing.JFrame {
         else{
             
             cityCounter++;
+            listaDeCiudades.agregarAlFinal(CityNameInput.getText(), cityCounter);
             ConfirmNewCityjButton.setEnabled(false);
                     
         }
@@ -970,6 +982,21 @@ public class Vista extends javax.swing.JFrame {
             }
         });
         
+    }
+    
+    public NodoVertice escogerCiudadDeHormiga(){
+        int n = cityCounter;
+        int m =(int) (Math.random()*n)+1;
+        NodoVertice nodo = null;
+        for (int i = 0; i < m; i++) {
+            if(i==0){
+                nodo = listaDeCiudades.pFisrt;
+            }else{
+            nodo = nodo.pNext;
+            }
+        }
+        return nodo;
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

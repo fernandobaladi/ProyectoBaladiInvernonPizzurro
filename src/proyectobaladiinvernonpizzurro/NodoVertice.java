@@ -16,17 +16,13 @@ public class NodoVertice {
     public int numeroDeNodo;
     public String etiqueta;
     public NodoArista ady = nodosAristasAdyacentes.pFirst;
-    public Object o;
 
-    public NodoVertice(Object o, String etiqueta) {
-        this.o = o;
+    public NodoVertice(String etiqueta, int numeroDeNodo) {
+        this.numeroDeNodo = numeroDeNodo;
         this.etiqueta = etiqueta;
         this.pNext = null;
     }
 
-    public void setData(Object o) {
-        this.o = o;
-    }
 
     public NodoVertice getpNext() {
         return pNext;

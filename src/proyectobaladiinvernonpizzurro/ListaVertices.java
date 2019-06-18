@@ -67,8 +67,8 @@ public class ListaVertices {
         }
     }
     
-    public void agregarAlFinal(Object x, String etiqueta){
-        NodoVertice nNuevo = new NodoVertice(x, etiqueta);
+    public void agregarAlFinal(String etiqueta, int numeroDeNodo){
+        NodoVertice nNuevo = new NodoVertice(etiqueta, numeroDeNodo);
         if (esVacio()) {
             pFisrt = nNuevo;
             pLast = nNuevo;
@@ -102,15 +102,6 @@ public class ListaVertices {
             }
         }
     }
-    
-    public Object getDatos(NodoVertice pValor){
-        return pValor.o;
-    }
-    
-    public void setDatos(char x,NodoVertice pValor){
-        pValor.setData(x);
-    }
-    
    
 
     public void limpiarLista(){
