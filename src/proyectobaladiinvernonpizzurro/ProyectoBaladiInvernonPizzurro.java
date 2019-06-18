@@ -30,11 +30,4 @@ public class ProyectoBaladiInvernonPizzurro {
         }
     }
     
-    public static void escogerCiudadParaHormiga(ListaVertices lista, int cityCounter){
-        int n = cityCounter+1;
-        int m = (int) Math.random()+n;
-        System.out.println("Me sabe a bola");
-    
-    }
-    
 }
