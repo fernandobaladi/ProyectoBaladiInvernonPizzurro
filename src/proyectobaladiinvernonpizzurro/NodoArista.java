@@ -10,14 +10,17 @@ package proyectobaladiinvernonpizzurro;
  * @author Fernando Baladi
  */
 public class NodoArista {
+   
     public int distancia;
     public NodoArista pNext;
     public String etiqueta;
-    public ListaAristas listaA = new ListaAristas("Lista de Aristas");
+    public int id;
+    public double feromonas = 0.1;
 
-    public NodoArista(int distancia, String etiqueta) {
+    public NodoArista(int distancia, String etiqueta, int id) {
         this.distancia = distancia;
         this.etiqueta = etiqueta;
+        this.id = id;
         this.pNext = null;
     }
 
@@ -45,6 +48,5 @@ public class NodoArista {
     public void setpNext(NodoArista pNext) {
         this.pNext = pNext;
     }
-
     
 }

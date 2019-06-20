@@ -10,15 +10,15 @@ package proyectobaladiinvernonpizzurro;
  * @author Fernando Baladi
  */
 public class NodoVertice {
-    
-    ListaAristas nodosAristasAdyacentes = new ListaAristas("Lista de nodos");
+   
+    ListaAristas nodosAristasAdyacentes = new ListaAristas("Lista de nodos"); 
     public NodoVertice pNext;
-    public int numeroDeNodo;
+    public int id;
     public String etiqueta;
     public NodoArista ady = nodosAristasAdyacentes.pFirst;
 
     public NodoVertice(String etiqueta, int numeroDeNodo) {
-        this.numeroDeNodo = numeroDeNodo;
+        this.id = numeroDeNodo;
         this.etiqueta = etiqueta;
         this.pNext = null;
     }

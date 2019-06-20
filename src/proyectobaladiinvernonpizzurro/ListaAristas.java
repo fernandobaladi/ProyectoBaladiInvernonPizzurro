@@ -63,8 +63,8 @@ public class ListaAristas {
         }
     }
     
-    public void agregarAlFinal(int peso, String etiqueta){
-        NodoArista nNuevo = new NodoArista(peso, etiqueta);
+    public void agregarAlFinal(int peso, String etiqueta, int id){
+        NodoArista nNuevo = new NodoArista(peso, etiqueta, id);
         if (esVacio()) {
             pFirst = nNuevo;
         } else{
