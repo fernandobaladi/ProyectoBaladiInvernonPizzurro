@@ -73,8 +73,14 @@ public class ProyectoBaladiInvernonPizzurro {
         vertices.pFisrt.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
         vertices.pFisrt.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
         
-        Hormiga h = new Hormiga(vertices.pFisrt, vertices.nNodos);
-        h.irASiguienteCiudad(vertices);
+        Hormiga h = new Hormiga(vertices.pFisrt.pNext, vertices.nNodos);
+        h.irASiguienteCiudad(vertices,0);
+        h.irASiguienteCiudad(vertices, 1);
+        h.irASiguienteCiudad(vertices, 2);
+        h.irASiguienteCiudad(vertices, 3);
+        h.irASiguienteCiudad(vertices, 4);
+
+        
     }
     
 }
