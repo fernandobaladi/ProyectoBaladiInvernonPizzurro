@@ -1170,12 +1170,18 @@ public class Vista extends javax.swing.JFrame {
                 if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ",
                         "Valores de la partida", YES_NO_OPTION) == 0) {
 
-                    AntsNumInput.setEditable(false);
-                    IterationsInput.setEditable(false);
+                    AntsNumInput.setEditable(false);                    
+                    colonia = new Hormiga[nHormigas];
+                    IterationsInput.setEditable(false);                    
                     CustomValuesButton.setEnabled(false);
                     DefaultValuesButton.setEnabled(false);
                     AddCityjButton.setEnabled(true);
                     DeleteCityjButton.setEnabled(true);
+                    AntsNum = Integer.parseInt(AntsNumInput.getText());
+                    Iterations = Integer.parseInt(IterationsInput.getText());
+                    βValue = Integer.parseInt(βValueInput.getText());
+                    αValue = Integer.parseInt(αValueInput.getText());
+                    ρValue = Float.parseFloat(ρValueInput.getText());
                 }
 
             }
@@ -1430,6 +1436,21 @@ public class Vista extends javax.swing.JFrame {
             }
         });
         
+    }
+    
+    public NodoVertice escogerCiudadDeHormiga(){
+        int n = cityCounter;
+        int m =(int) (Math.random()*n)+1;
+        NodoVertice nodo = null;
+        for (int i = 0; i < m; i++) {
+            if(i==0){
+                nodo = listaDeCiudades.pFirst;
+            }else{
+            nodo = nodo.pNext;
+            }
+        }
+        return nodo;
+    
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
