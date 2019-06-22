@@ -24,30 +24,39 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.YES_NO_OPTION;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.text.PlainDocument;
 
 /**
  *
- * @author kathe0710
+ * @author Invernon
  */
 public class Vista extends javax.swing.JFrame {
     
     //Contador de ciudades existentes en la partida
-        int cityCounter=0;
+        int cityCounter=4;
+        
+        
         JButton jButton1 = new javax.swing.JButton();
-        JLabel CityImage = new javax.swing.JLabel();
-        String CityNames[] = new String [20];
-        JLabel Cities[] = new JLabel [20];
+        JLabel CityImage = new javax.swing.JLabel();        
+        JLabel Cities[] = new JLabel [20];        
         private Image ant = new ImageIcon("ant .png").getImage();
+        int AntsNum=0, Iterations, βValue, αValue;
+        float ρValue, cityDistance;
+        String cityName;
+        
+        Cities_ Cities_[] = new Cities_ [20];
+        distanceMatrix distanceMatrix = new distanceMatrix();
+        boolean deleteCity = false;
+        Tests Test = new Tests();
         
     
     public Vista() {
-                
+             
         initComponents();
-        
-        //Integer.parseInt(AntsNumInput.getText())
-                
+                        
         //Inicializacion de los paneles y botones 
         jPanelNewGame.setVisible(false);
         jPanelInstruction.setVisible(false);
@@ -59,8 +68,10 @@ public class Vista extends javax.swing.JFrame {
         jPanelGame.setVisible(false);
         jPanelMain.setSize(720,720);
         jPanelMain.setVisible(true);
+        SavejButton.setEnabled(false);
         jPanelGame.setSize(720, 720);
         
+        //Restricciones de los inputs 
         AntsNumInput.addKeyListener(new KeyAdapter() {
            public void keyTyped(KeyEvent event)
            {
@@ -90,12 +101,56 @@ public class Vista extends javax.swing.JFrame {
               }
            }
         });
-                        
+        
+        βValueInput.addKeyListener(new KeyAdapter() {
+           public void keyTyped(KeyEvent event)
+           {
+              char character = event.getKeyChar();
+
+              // Verifica si la tecla pulsada por el usuario no es un digito
+              if(((character < '0') ||
+                 (character > '9')) &&
+                 (character != '\b'))  // el backspace
+              {
+                 event.consume();  // ignorar el teclado
+              }
+           }
+        });
+        
+        αValueInput.addKeyListener(new KeyAdapter() {
+           public void keyTyped(KeyEvent event)
+           {
+              char character = event.getKeyChar();
+
+              // Verifica si la tecla pulsada por el usuario no es un digito
+              if(((character < '0') ||
+                 (character > '9')) &&
+                 (character != '\b'))  // el backspace
+              {
+                 event.consume();  // ignorar el teclado
+              }
+           }
+        });
+        
+        ρValueInput.addKeyListener(new KeyAdapter() {
+           public void keyTyped(KeyEvent event)
+           {
+              char character = event.getKeyChar();
+
+              // Verifica si la tecla pulsada por el usuario no es un digito
+              if(((character < '0') ||
+                 (character > '9')) &&
+                 (character != '.') &&
+                 (character != '\b'))  // el backspace
+              {
+                 event.consume();  // ignorar el teclado
+              }
+           }
+        });
+                                 
         //Texto a mostrar en dos de los labels
         CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
-        CityDistancejLabel.setText("Distancia respecto a ");
-        
-                                  
+                                          
         if (CustomValuesButton.isSelected()) {
         
             βValueInput.setEditable(true);
@@ -126,38 +181,21 @@ public class Vista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelGame = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
         jPanelInstruction = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        CityImagejLabel1 = new javax.swing.JLabel();
-        CityImagejLabel2 = new javax.swing.JLabel();
-        CityImagejLabel3 = new javax.swing.JLabel();
-        CityImagejLabel4 = new javax.swing.JLabel();
-        CityImagejLabel5 = new javax.swing.JLabel();
-        CityImagejLabel6 = new javax.swing.JLabel();
-        CityImagejLabel7 = new javax.swing.JLabel();
-        CityImagejLabel8 = new javax.swing.JLabel();
-        CityImagejLabel9 = new javax.swing.JLabel();
-        CityImagejLabel10 = new javax.swing.JLabel();
-        CityImagejLabel11 = new javax.swing.JLabel();
-        CityImagejLabel12 = new javax.swing.JLabel();
-        CityImagejLabel13 = new javax.swing.JLabel();
-        CityImagejLabel14 = new javax.swing.JLabel();
-        CityImagejLabel15 = new javax.swing.JLabel();
-        CityImagejLabel16 = new javax.swing.JLabel();
-        CityImagejLabel17 = new javax.swing.JLabel();
-        CityImagejLabel18 = new javax.swing.JLabel();
-        CityImagejLabel19 = new javax.swing.JLabel();
-        CityImagejLabel20 = new javax.swing.JLabel();
         DrawCitiesButton = new javax.swing.JButton();
+        ShowTravelsButton = new javax.swing.JButton();
+        AntsTravelInfojLabel = new javax.swing.JLabel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        CitiesjPanel = new javax.swing.JPanel();
+        AntsjPanel = new javax.swing.JPanel();
+        AntsTraveljPanel = new javax.swing.JPanel();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NewCityjPanel = new javax.swing.JPanel();
         CityNamejLabel1 = new javax.swing.JLabel();
         CityNameInput = new javax.swing.JTextField();
         CityNameValidationButton = new javax.swing.JButton();
-        CityDistancejLabel = new javax.swing.JLabel();
-        CityDistanceInput = new javax.swing.JTextField();
-        CityDistanceValidationButton = new javax.swing.JButton();
         ConfirmNewCityjButton = new javax.swing.JButton();
         DeleteCityjPanel = new javax.swing.JPanel();
         Cities1 = new javax.swing.JPanel();
@@ -196,242 +234,28 @@ public class Vista extends javax.swing.JFrame {
         jPanelGame.setBackground(new java.awt.Color(213, 204, 206));
         jPanelGame.setPreferredSize(new java.awt.Dimension(600, 500));
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/SmallAnt.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanelGameLayout = new javax.swing.GroupLayout(jPanelGame);
         jPanelGame.setLayout(jPanelGameLayout);
         jPanelGameLayout.setHorizontalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jPanelGameLayout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabel4)
+                .addContainerGap(477, Short.MAX_VALUE))
         );
         jPanelGameLayout.setVerticalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanelGameLayout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(jLabel4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelInstruction.setBackground(new java.awt.Color(213, 204, 206));
         jPanelInstruction.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Instrucciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
         jPanelInstruction.setPreferredSize(new java.awt.Dimension(600, 500));
-
-        jPanel1.setBackground(new java.awt.Color(213, 204, 206));
-
-        CityImagejLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel1.setText("holas");
-        CityImagejLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel2.setText("hello");
-        CityImagejLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel3.setText("hello");
-        CityImagejLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel4.setText("holi");
-        CityImagejLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel5.setText("hi");
-        CityImagejLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel6.setText("hello");
-        CityImagejLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel7.setText("hello");
-        CityImagejLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel8.setText("hello");
-        CityImagejLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel9.setText("hello");
-        CityImagejLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel10.setText("hello");
-        CityImagejLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        CityImagejLabel11.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel11.setText("hello");
-        CityImagejLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel12.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel12.setText("hello");
-        CityImagejLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel12.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel13.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel13.setText("hello");
-        CityImagejLabel13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel14.setText("hello");
-        CityImagejLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel15.setText("hello");
-        CityImagejLabel15.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel15.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel16.setText("hello");
-        CityImagejLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel17.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel17.setText("hello");
-        CityImagejLabel17.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel17.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel18.setText("hello");
-        CityImagejLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel18.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel19.setText("hello");
-        CityImagejLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        CityImagejLabel20.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityImagejLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png"))); // NOI18N
-        CityImagejLabel20.setText("hello");
-        CityImagejLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CityImagejLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CityImagejLabel11))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CityImagejLabel2)
-                            .addComponent(CityImagejLabel3)
-                            .addComponent(CityImagejLabel4)
-                            .addComponent(CityImagejLabel5))
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CityImagejLabel7)
-                            .addComponent(CityImagejLabel6)
-                            .addComponent(CityImagejLabel8)
-                            .addComponent(CityImagejLabel9)
-                            .addComponent(CityImagejLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CityImagejLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CityImagejLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CityImagejLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CityImagejLabel13, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(70, 70, 70)
-                                    .addComponent(CityImagejLabel16))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CityImagejLabel17)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CityImagejLabel18)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(CityImagejLabel19)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CityImagejLabel20)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CityImagejLabel1)
-                                .addGap(55, 55, 55))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(CityImagejLabel11)
-                                .addGap(54, 54, 54)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CityImagejLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CityImagejLabel2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(CityImagejLabel16)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addComponent(CityImagejLabel3)
-                        .addGap(65, 65, 65)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CityImagejLabel14)
-                            .addComponent(CityImagejLabel4))
-                        .addGap(84, 84, 84)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(CityImagejLabel15)
-                            .addComponent(CityImagejLabel5))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CityImagejLabel7)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CityImagejLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(CityImagejLabel13)
-                                .addGap(5, 5, 5)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(CityImagejLabel18)
-                                    .addComponent(CityImagejLabel8))
-                                .addGap(76, 76, 76)
-                                .addComponent(CityImagejLabel19)
-                                .addGap(73, 73, 73)
-                                .addComponent(CityImagejLabel20)))
-                        .addGap(64, 64, 64))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(CityImagejLabel6)
-                .addGap(279, 279, 279)
-                .addComponent(CityImagejLabel9)
-                .addGap(73, 73, 73)
-                .addComponent(CityImagejLabel10)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         DrawCitiesButton.setBackground(new java.awt.Color(164, 225, 3));
         DrawCitiesButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -443,24 +267,138 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
+        ShowTravelsButton.setBackground(new java.awt.Color(164, 225, 3));
+        ShowTravelsButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        ShowTravelsButton.setText("Todos los recorridos");
+        ShowTravelsButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
+        ShowTravelsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ShowTravelsButtonActionPerformed(evt);
+            }
+        });
+
+        AntsTravelInfojLabel.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        AntsTravelInfojLabel.setText("Para ver la trayectoria de solo una hormiga darle click a la hormiga");
+
+        jLayeredPane2.setMaximumSize(new java.awt.Dimension(500, 500));
+        jLayeredPane2.setPreferredSize(new java.awt.Dimension(500, 500));
+
+        CitiesjPanel.setBackground(new java.awt.Color(213, 204, 206));
+
+        javax.swing.GroupLayout CitiesjPanelLayout = new javax.swing.GroupLayout(CitiesjPanel);
+        CitiesjPanel.setLayout(CitiesjPanelLayout);
+        CitiesjPanelLayout.setHorizontalGroup(
+            CitiesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        CitiesjPanelLayout.setVerticalGroup(
+            CitiesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        AntsjPanel.setBackground(new java.awt.Color(213, 204, 206));
+        AntsjPanel.setMinimumSize(new java.awt.Dimension(500, 500));
+        AntsjPanel.setName(""); // NOI18N
+
+        javax.swing.GroupLayout AntsjPanelLayout = new javax.swing.GroupLayout(AntsjPanel);
+        AntsjPanel.setLayout(AntsjPanelLayout);
+        AntsjPanelLayout.setHorizontalGroup(
+            AntsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        AntsjPanelLayout.setVerticalGroup(
+            AntsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        AntsTraveljPanel.setBackground(new java.awt.Color(213, 204, 206));
+        AntsTraveljPanel.setMinimumSize(new java.awt.Dimension(0, 0));
+        AntsTraveljPanel.setOpaque(false);
+        AntsTraveljPanel.setPreferredSize(new java.awt.Dimension(500, 500));
+
+        javax.swing.GroupLayout AntsTraveljPanelLayout = new javax.swing.GroupLayout(AntsTraveljPanel);
+        AntsTraveljPanel.setLayout(AntsTraveljPanelLayout);
+        AntsTraveljPanelLayout.setHorizontalGroup(
+            AntsTraveljPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        AntsTraveljPanelLayout.setVerticalGroup(
+            AntsTraveljPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        jLayeredPane2.setLayer(CitiesjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(AntsjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane2.setLayer(AntsTraveljPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
+        jLayeredPane2.setLayout(jLayeredPane2Layout);
+        jLayeredPane2Layout.setHorizontalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(AntsTraveljPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(AntsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(32, Short.MAX_VALUE)))
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                    .addGap(28, 28, 28)
+                    .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(29, Short.MAX_VALUE)))
+        );
+        jLayeredPane2Layout.setVerticalGroup(
+            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(AntsTraveljPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(AntsjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jLayeredPane2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(109, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanelInstructionLayout = new javax.swing.GroupLayout(jPanelInstruction);
         jPanelInstruction.setLayout(jPanelInstructionLayout);
         jPanelInstructionLayout.setHorizontalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInstructionLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanelInstructionLayout.setVerticalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelInstructionLayout.createSequentialGroup()
                 .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGroup(jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanelNewGame.setBackground(new java.awt.Color(213, 204, 206));
@@ -493,27 +431,6 @@ public class Vista extends javax.swing.JFrame {
             }
         });
 
-        CityDistancejLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-
-        CityDistanceInput.setBackground(new java.awt.Color(215, 214, 213));
-        CityDistanceInput.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        CityDistanceInput.setBorder(null);
-        CityDistanceInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CityDistanceInputActionPerformed(evt);
-            }
-        });
-
-        CityDistanceValidationButton.setBackground(new java.awt.Color(164, 225, 3));
-        CityDistanceValidationButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        CityDistanceValidationButton.setText("Aceptar");
-        CityDistanceValidationButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        CityDistanceValidationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CityDistanceValidationButtonActionPerformed(evt);
-            }
-        });
-
         ConfirmNewCityjButton.setBackground(new java.awt.Color(164, 225, 3));
         ConfirmNewCityjButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ConfirmNewCityjButton.setText("Guardar ciudad");
@@ -529,41 +446,29 @@ public class Vista extends javax.swing.JFrame {
         NewCityjPanelLayout.setHorizontalGroup(
             NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewCityjPanelLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CityDistancejLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(NewCityjPanelLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(CityNamejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewCityjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(ConfirmNewCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewCityjPanelLayout.createSequentialGroup()
+                        .addComponent(ConfirmNewCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, NewCityjPanelLayout.createSequentialGroup()
+                        .addComponent(CityNamejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))))
         );
         NewCityjPanelLayout.setVerticalGroup(
             NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(NewCityjPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CityNamejLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(CityNameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(CityNameValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(48, 48, 48)
-                .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CityDistancejLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(NewCityjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(CityDistanceInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(CityDistanceValidationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(59, 59, 59)
+                .addGap(63, 63, 63)
                 .addComponent(ConfirmNewCityjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84))
         );
@@ -620,7 +525,7 @@ public class Vista extends javax.swing.JFrame {
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(NewCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jLayeredPane1Layout.createSequentialGroup()
                     .addComponent(DeleteCityjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -957,7 +862,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jPanelGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -969,45 +874,77 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPanelGame, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jPanelInstruction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelMain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGamejButtonActionPerformed
-         
-        //Estados de los paneles y botones
-        NewCityjPanel.setVisible(false);
-        jPanelMain.setVisible(false);
-        DeleteCityjPanel.setVisible(false);
-        jPanelInstruction.setVisible(false);
-        jPanelNewGame.setVisible(true);
-        CustomValuesButton.setSelected(false);
-        DefaultValuesButton.setSelected(true);
-        AddCityjButton.setEnabled(false);
-        DeleteCityjButton.setEnabled(false);
-        AntsNumInput.setEditable(true);
-        IterationsInput.setEditable(true);
-        CustomValuesButton.setEnabled(true);
-        DefaultValuesButton.setEnabled(true);
-        βValueInput.setEditable(false);
-        αValueInput.setEditable(false);
-        ρValueInput.setEditable(false);
-        cityCounter=0;
+                
+        if (jPanelNewGame.isVisible() == false) {
         
-        //Vaciar los campos de inputs
-        AntsNumInput.setText("");
-        βValueInput.setText("");
-        αValueInput.setText("");
-        ρValueInput.setText("");
-        IterationsInput.setText("");
+            initializeComponents();
+        }
+        if (!AntsNumInput.getText().equals("")){
+        
+            if (JOptionPane.showConfirmDialog(null, "Deseas empezar desde 0?" , "Nueva Configuración de partida", YES_NO_OPTION) == 0){
+               
+               DeleteData();
+               initializeComponents();
+               
+               for(int i=0; i<Cities_.length; i++){
+                    System.out.println(Cities_[i] + " ");
+               }
+            }
+        }
+        
         
     }//GEN-LAST:event_NewGamejButtonActionPerformed
 
+    public void initializeComponents (){
+    
+        //Estados de los paneles y botones
+                NewCityjPanel.setVisible(false);
+                jPanelMain.setVisible(false);
+                DeleteCityjPanel.setVisible(false);
+                jPanelInstruction.setVisible(false);
+                jPanelNewGame.setVisible(true);
+                CustomValuesButton.setSelected(false);
+                DefaultValuesButton.setSelected(true);
+                AddCityjButton.setEnabled(false);
+                DeleteCityjButton.setEnabled(false);
+                AntsNumInput.setEditable(true);
+                IterationsInput.setEditable(true);
+                CustomValuesButton.setEnabled(true);
+                DefaultValuesButton.setEnabled(true);
+                βValueInput.setEditable(false);
+                αValueInput.setEditable(false);
+                ρValueInput.setEditable(false);                
+                cityCounter=0;
+    }
+    
+    public void DeleteData (){
+                    
+                 //Vaciar los campos de inputs
+                AntsNumInput.setText("");
+                βValueInput.setText("");
+                αValueInput.setText("");
+                ρValueInput.setText("");
+                IterationsInput.setText("");
+
+                //Vaciar el array de ciudades 
+               
+                    //Cities_ = null;
+                
+                
+                //Vaciar el array de distancias 
+                
+        
+    }
     private void ExitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitjButtonActionPerformed
        
-        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas salir? ") == 0){
+        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas salir? " , "Salir", YES_NO_OPTION) == 0){
         
             System.exit(0);
         }
@@ -1019,96 +956,137 @@ public class Vista extends javax.swing.JFrame {
         jPanelNewGame.setVisible(false);
         jPanelMain.setVisible(false);
         jPanelInstruction.setVisible(true);
-        /*CityImagejLabel1.setLocation(0, 0);
-        CityImagejLabel2.setLocation(0, 500);
-        CityImagejLabel3.setLocation(0, 500);
-        CityImagejLabel4.setLocation(400, 0);
-        CityImagejLabel5.setLocation(400, 500);
-        CityImagejLabel6.setLocation(0, 0);
-        CityImagejLabel7.setLocation(0, 0);
-        CityImagejLabel8.setLocation(0, 0);
-        CityImagejLabel9.setLocation(0, 0);
-        CityImagejLabel10.setLocation(0, 0);
-        CityImagejLabel11.setLocation(0, 0);
-        CityImagejLabel12.setLocation(0, 0);
-        CityImagejLabel13.setLocation(0, 0);
-        CityImagejLabel14.setLocation(0, 0);
-        CityImagejLabel15.setLocation(0, 0);
-        CityImagejLabel16.setLocation(0, 0);
-        CityImagejLabel17.setLocation(0, 0);
-        CityImagejLabel18.setLocation(0, 0);
-        CityImagejLabel19.setLocation(0, 0);
-        CityImagejLabel20.setLocation(0, 0);*/
-        
-        HideCities();
-        fillCities();        
-        
+                
     }//GEN-LAST:event_InstructionsjButtonActionPerformed
 
-    public void HideCities (){
     
-        CityImagejLabel1.setVisible(false);
-        CityImagejLabel2.setVisible(false);
-        CityImagejLabel3.setVisible(false);
-        CityImagejLabel4.setVisible(false);
-        CityImagejLabel5.setVisible(false);
-        CityImagejLabel6.setVisible(false);
-        CityImagejLabel7.setVisible(false);
-        CityImagejLabel8.setVisible(false);
-        CityImagejLabel9.setVisible(false);
-        CityImagejLabel10.setVisible(false);
-        CityImagejLabel11.setVisible(false);
-        CityImagejLabel12.setVisible(false);
-        CityImagejLabel13.setVisible(false);
-        CityImagejLabel14.setVisible(false);
-        CityImagejLabel15.setVisible(false);
-        CityImagejLabel16.setVisible(false);
-        CityImagejLabel17.setVisible(false);;
-        CityImagejLabel18.setVisible(false);
-        CityImagejLabel19.setVisible(false);
-        CityImagejLabel20.setVisible(false);
-    }
     
-    public void fillCities(){
-        this.Cities[0] = CityImagejLabel1;
-        this.Cities[1] = CityImagejLabel2;
-        this.Cities[2] = CityImagejLabel3;
-        this.Cities[3] = CityImagejLabel4;
-        this.Cities[4] = CityImagejLabel5;
-        this.Cities[5] = CityImagejLabel6;
-        this.Cities[6] = CityImagejLabel7;
-        this.Cities[7] = CityImagejLabel8;
-        this.Cities[8] = CityImagejLabel9;
-        this.Cities[9] = CityImagejLabel10;
-        this.Cities[10] = CityImagejLabel11;
-        this.Cities[11] = CityImagejLabel12;
-        this.Cities[12] = CityImagejLabel13;
-        this.Cities[13] = CityImagejLabel14;
-        this.Cities[14] = CityImagejLabel15;
-        this.Cities[15] = CityImagejLabel16;
-        this.Cities[16] = CityImagejLabel17;
-        this.Cities[17] = CityImagejLabel18;
-        this.Cities[18] = CityImagejLabel19;
-        this.Cities[19] = CityImagejLabel20;
+    public void drawCities (){
+       
+        /*CreateLabelDynamically c = new CreateLabelDynamically();
+        c.setTitle("Ciudades");
+        c.setSize(700,700);
+        c.setVisible(true);*/
         
-        for (int i=0; i < cityCounter ; i++){
+        CitiesjPanel.removeAll();
         
-            //en text iria la variable donde se guarda el nombre de cada ciudad y se iria recorriendo el grafo (?)
-            //this.Cities[i].setText(text);
-        }
+        for (int i=0; i < cityCounter; i++) {
+            
+                Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
+                
+                System.out.println(Cities_[i].posX + "  " + Cities_[i].posY + " - nombre " + Cities_[i].name);
+                
+//                c.PaintCity( Cities_[i].label, Cities_[i].posX , Cities_[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
+                
+//              AntsjPanel.add(Cities_[i].label);
 
-    }
-    
-    public void showCities (){
-    
-        for( int i = 0 ; i < cityCounter ; i++ ){
-             this.Cities[i].setVisible(true);
-        }
-    }
-    
-    public void locateCities (){
-    
+                CitiesjPanel.add(Cities_[i].label);
+                CitiesjPanel.validate();
+                CitiesjPanel.repaint();
+                           
+            }
         
+        for( int j = 0 ; j < Cities_.length ; j++){
+            if( Cities_[j] != null ){
+                System.out.println("Ciudad: " + Cities_[j].name + " - PosX : " + Cities_[j].posX + " - PosY : " + Cities_[j].posY );
+            }
+        }
+                
+        this.distanceMatrix.drawMatrix();
+        
+    }
+    
+        public int AsignPositionX (int i, int cityCounter){
+        int var;
+        double posX;   
+        var = 100;               
+            if (cityCounter > 11) {       
+                if (i < 10 && i % 2 == 0) {           
+                    posX = 62.5;               
+                }
+                else if (i < 10 && i % 2 != 0) {           
+                    posX = 500 - 62.5;               
+                }
+                else if (i >= 10 && i % 2 == 0 ) {           
+                    posX = 62.5*3;               
+                }
+                else {           
+                    posX = 62.5*5;               
+                }
+            }
+            else {       
+                if (i % 2 == 0) {           
+                    if (i == (cityCounter-1)) {               
+                        posX = 500/2;                   
+                    }
+                    else{
+                        posX = var;
+                    }               
+                }
+                else{               
+                    posX = 500 - var;               
+                }
+            }       
+            return (int)posX;                   
+    }
+    
+
+    public int AsignPositionY (int i, int cityCounter){
+    
+        int even, odd; //Even para el calculo para los numeros pares , Odd para los impares
+        double gamma; // Constante para que se vayan desplazando hacia abajo
+        double posY,rowPos;
+        
+        even = (cityCounter/2) + 1; 
+        odd = (cityCounter + 1) / 2;
+        rowPos = Math.floor( (i/2) + 1);
+        
+            if (cityCounter > 11) {
+                if (i < 10 && i % 2 == 0) { 
+                    gamma = ( 500 / even );
+                    posY = gamma * rowPos;
+//                    posY = 500 / (even * rowPos); 
+                }
+                else if (i < 10 && i % 2 != 0) {
+                    gamma = ( 500 / odd );
+                    posY = (gamma * rowPos) + 25;
+//                    posY = (500 / (odd * rowPos)) + 25;
+                }
+                else if (i >= 10 && i % 2 == 0 ) {
+                    gamma = ( 500 / even );
+                    rowPos = Math.floor( ( (i-10) /2) + 1);
+                    posY = (gamma * rowPos) + 25;
+//                    posY = (500 / (even * rowPos)) + 25; 
+                }
+                else {
+                    gamma = ( 500 / odd );
+                    rowPos = Math.floor( ( (i-10) /2) + 1);
+                    posY = (gamma * rowPos);
+//                    posY = 500 / (odd * rowPos);
+                }
+            }
+            else {
+                if (i % 2 == 0) {
+                    if (i == (cityCounter - 1) ) {
+                        posY = 500/2;
+                    }
+                    else {
+//                        gamma = ( 500 / even );
+//                        posY = gamma * rowPos;
+                          posY = 500/(even*rowPos);
+//                         posY = 500 / (even * rowPos); 
+                    }
+                }
+                else{       
+                    //gamma = ( 500 / odd );
+                    //posY = (gamma * rowPos);
+                    posY = 500/(odd * rowPos);
+//                  posY = 500 / (odd * rowPos);
+                }
+            }
+            
+            return (int) posY;
+                        
     }
     
     private void LoadGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGamejButtonActionPerformed
@@ -1135,24 +1113,13 @@ public class Vista extends javax.swing.JFrame {
                 }
                 else {
 
-                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas empezar tu partida con " + cityCounter + " ciudades? ") == 0) {
+                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas empezar tu partida con " + cityCounter + " ciudades? ",
+                            "Iniciar partida", YES_NO_OPTION) == 0) {
                     
-                        
+                        SavejButton.setEnabled(true);
                         jPanelNewGame.setVisible(false);
                         jPanelGame.setVisible(true);
-                                                
-                        /*//prueba de que funcionen las cosas de los botones
-                        String names1[] = {"a", "b", "c", "d", "e","f", "g", "h", "i", "j","k", "l", "m", "n", "o",null, "q", null, null, null};
-
-                        for(int i=0; i < CityNames.length; i++) {
-
-                            CityNames[i] = names1[i];
-                        }
-                        // fin de lo que es prueba
-
-                        jPanelGame.setLayout(new GridLayout(4,5,8,8));
-
-                        drawCitiesImages (CityNames);*/
+                                              
                     }
 
                 }
@@ -1180,7 +1147,8 @@ public class Vista extends javax.swing.JFrame {
                 }
                 else{
                 
-                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ") == 0) {
+                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida?", 
+                            "Valores de la partida", YES_NO_OPTION) == 0) {
 
                         AntsNumInput.setEditable(false);
                         IterationsInput.setEditable(false);
@@ -1188,12 +1156,19 @@ public class Vista extends javax.swing.JFrame {
                         DefaultValuesButton.setEnabled(false);
                         AddCityjButton.setEnabled(true);
                         DeleteCityjButton.setEnabled(true);
+                        AntsNum = Integer.parseInt(AntsNumInput.getText());
+                        Iterations = Integer.parseInt(IterationsInput.getText());
+                        βValue = Integer.parseInt(βValueInput.getText());
+                        αValue = Integer.parseInt(αValueInput.getText());
+                        ρValue = Float.parseFloat(ρValueInput.getText());
+                               
                     }
                 }
             }
             else {
 
-                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ") == 0) {
+                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ",
+                        "Valores de la partida", YES_NO_OPTION) == 0) {
 
                     AntsNumInput.setEditable(false);
                     IterationsInput.setEditable(false);
@@ -1212,38 +1187,48 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_GameOptionsValidationButtonActionPerformed
 
     private void AddCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityjButtonActionPerformed
+        
+        CityNameValidationButton.setEnabled(true);
+        
+        if (cityCounter == 0){
+        
+            //volver a inicializar los botones y mostrar la pantalla de nuevo juego
+            DeleteCityjPanel.setVisible(false);
+            NewCityjPanel.setVisible(true);            
+            CityNameInput.setEditable(true);            
+            ConfirmNewCityjButton.setEnabled(true);
+            CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
 
-        //volver a inicializar los botones y mostrar la pantalla de nuevo juego
-        DeleteCityjPanel.setVisible(false);
-        NewCityjPanel.setVisible(true);
-        CityNameInput.setEditable(true);
-        CityDistanceInput.setEditable(false);
-        ConfirmNewCityjButton.setEnabled(true);
-        CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
+            //Vaciar los campos de inputs
+            CityNameInput.setText("");
+            
+            AddCityjButton.setEnabled(false); //colocar el boton deshabilitado hasta no completar el proceso de agregar la nueva ciudad
+        }
+        else {
+        
+            //volver a inicializar los botones y mostrar la pantalla de nuevo juego
+            DeleteCityjPanel.setVisible(false);
+            NewCityjPanel.setVisible(true);            
+            CityNameInput.setEditable(true);            
+            ConfirmNewCityjButton.setEnabled(true);
+            CityNamejLabel1.setText("Nombre de la ciudad nº " + (cityCounter+1));
 
-        //Vaciar los campos de inputs
-        CityNameInput.setText("");
-        CityDistanceInput.setText("");        
+            //Vaciar los campos de inputs
+            CityNameInput.setText("");  
+            
+            AddCityjButton.setEnabled(false);
+        }
     }//GEN-LAST:event_AddCityjButtonActionPerformed
 
     private void DeleteCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCityjButtonActionPerformed
 
+        AddCityjButton.setEnabled(true);
         NewCityjPanel.setVisible(false);
         DeleteCityjPanel.setVisible(true);
-        Cities1.removeAll();
-        
-        //prueba de que funcionen las cosas de los botones
-        String names1[] = {"a", "b", "c", "d", "e","f", "g", "h", "i", "j","k", "l", "m", "n", "o",null, "q", null, null, null};
-        
-        for(int i=0; i < CityNames.length; i++) {
-        
-            CityNames[i] = names1[i];
-        }
-        // fin de lo que es prueba
-        
+        Cities1.removeAll();        
         Cities1.setLayout(new GridLayout(4,5,8,8));
         
-        drawButtonCities (CityNames);
+        drawButtonCities (Cities_);
 
         
 
@@ -1273,60 +1258,79 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_AntsNumInputActionPerformed
 
     private void ConfirmNewCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmNewCityjButtonActionPerformed
-
-        if (CityNameInput.isEditable() || CityDistanceInput.isEditable()) {
+        
+        
+        if (CityNameInput.isEditable()) {
 
             JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
         }
-        else{
-            
-            cityCounter++;
+        else{            
+            cityCounter++;            
             ConfirmNewCityjButton.setEnabled(false);
-                    
+
+             // Aca se debe añadir la nueva ciudad al Arreglo ( Array ) 
+            Cities_[cityCounter-1] = new Cities_( cityName , cityCounter - 1 );
+
+            //Se llena la diagonal de 0s
+            this.distanceMatrix.setDistance(cityCounter - 1, cityCounter - 1, 0);
+            
+            //Se habilita de nuev el botón de agregar ciudad
+            AddCityjButton.setEnabled(true);
         }
         
         if (cityCounter == 20){
-        
+
             AddCityjButton.setEnabled(false);
         }
+        
+        
+        
     }//GEN-LAST:event_ConfirmNewCityjButtonActionPerformed
 
-    private void CityDistanceValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceValidationButtonActionPerformed
-
-        if (!CityDistanceInput.getText().equals("")) {
-
-            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar esta distancia? ") == 0) {
-
-                //Falta colocar que esto suceda solo despues de recorrer todo el grafo 
-                CityDistanceInput.setEditable(false);
-                
-            }
-        }
-        else {
-
-            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-        }
-    }//GEN-LAST:event_CityDistanceValidationButtonActionPerformed
-
-    private void CityDistanceInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityDistanceInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CityDistanceInputActionPerformed
-
     private void CityNameValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameValidationButtonActionPerformed
-
+             
+                
         if (!CityNameInput.getText().equals("")) {
 
-            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar ese nombre para tu ciudad? ") == 0) {
+            if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas confirmar ese nombre para tu ciudad? ",
+                    "Nombre de la ciudad", YES_NO_OPTION) == 0) {
 
-                CityNameInput.setEditable(false);
-                CityDistanceInput.setEditable(true);
+                CityNameInput.setEditable(false);  
+                CityNameValidationButton.setEnabled(false);
+                cityName = CityNameInput.getText();
+                
+                // Se asignan las distancias.
+                if (cityCounter != 0){
+                    int cityLeft = cityCounter;
+                    do {
+                        String cityDistanceString = JOptionPane.showInputDialog("Distancia de " + cityName + " respecto a " + Cities_[cityCounter-cityLeft].name
+                                + "\n SOLO VALORES NUMERICOS");
+                        
+                        if (cityDistanceString.equals(null) || !cityDistanceString.equals("")) {
+                            int col = cityCounter;
+                            int row = cityCounter - cityLeft;
+                            cityDistance = Float.parseFloat(cityDistanceString);
+                            this.distanceMatrix.setDistance( row , col , cityDistance);
+
+                            cityLeft--;
+                        }
+                        else {
+
+                            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+                        }
+
+                    }while (cityLeft>0);
+                }else{
+                    this.distanceMatrix.setDistance(0, 0, 0);
+                }
             }
         }
         else {
-
             JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-            CityDistanceInput.setEditable(false);
+            
         }
+        
+        
     }//GEN-LAST:event_CityNameValidationButtonActionPerformed
 
     private void CityNameInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameInputActionPerformed
@@ -1335,40 +1339,25 @@ public class Vista extends javax.swing.JFrame {
 
     private void DrawCitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DrawCitiesButtonActionPerformed
         
-        showCities();
-        /*CityImagejLabel1.setLocation(0, 0);
-        CityImagejLabel2.setLocation(0, 500);
-        CityImagejLabel3.setLocation(0, 500);
-        CityImagejLabel4.setLocation(400, 0);
-        CityImagejLabel5.setLocation(400, 500);
-        CityImagejLabel6.setLocation(0, 0);
-        CityImagejLabel7.setLocation(0, 0);
-        CityImagejLabel8.setLocation(0, 0);
-        CityImagejLabel9.setLocation(0, 0);
-        CityImagejLabel10.setLocation(0, 0);
-        CityImagejLabel11.setLocation(0, 0);
-        CityImagejLabel12.setLocation(0, 0);
-        CityImagejLabel13.setLocation(0, 0);
-        CityImagejLabel14.setLocation(0, 0);
-        CityImagejLabel15.setLocation(0, 0);
-        CityImagejLabel16.setLocation(0, 0);
-        CityImagejLabel17.setLocation(0, 0);
-        CityImagejLabel18.setLocation(0, 0)
-        CityImagejLabel19.setLocation(0, 0);
-        CityImagejLabel20.setLocation(0, 0);*/
+        drawCities();
                
         
     }//GEN-LAST:event_DrawCitiesButtonActionPerformed
 
-    private void drawButtonCities (String [] CityNames) {
+    private void ShowTravelsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowTravelsButtonActionPerformed
+       
+    }//GEN-LAST:event_ShowTravelsButtonActionPerformed
+
+    private void drawButtonCities (Cities_[] cities) {
     
+        int aux = cityCounter;
         //Creación de los botones de ciudades
-        for (int i=0; i < CityNames.length; i++) {
-            if (CityNames[i]!=null) {
-                System.out.println("hola");
-                final String cityName = CityNames[i];
-                final int cityPos = i;
-                JButton button = new JButton(CityNames[i]);
+        for (int i=0; i < cities.length; i++) {
+            if ( cities[i] != null ) {
+                
+                final String cityName = cities[i].name;
+               // deleteCity = false;
+                JButton button = new JButton(cityName);
 
                 //Características de los botones 
                 button.setBackground(new java.awt.Color(164, 225, 3));
@@ -1380,56 +1369,32 @@ public class Vista extends javax.swing.JFrame {
                 //Funciones de los botones creados
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta ciudad? ") == 0) {
-                            //this.CityNames[i] = null;
+                        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta ciudad? ",
+                                "Eliminar ciudad", YES_NO_OPTION) == 0) {
+                            //deleteCity = true;
                             button.setVisible(false);
-                            cityCounter--;
+                            cityCounter -- ;
                             if (cityCounter < 20){
-        
                                 AddCityjButton.setEnabled(true);
                             }
                             //drawButtonCities(CityNames);
                         }
-                        System.out.println("I was clicked!" + cityName + cityPos );
                     }
                 });
-                
+                               
                 Cities1.add(button);
             }
-           
-                    
+            System.out.println("cc" + cityCounter + "aux" + aux);
+                if( cityCounter < aux){                   
+                   cities[i] = null;   
+                    System.out.println("hola");
+                   distanceMatrix.delete(i);
+                }
+                              
         }
     }
     
-    /*private void drawCitiesImages(String [] CityNames){
-    
-        //Creación de los botones de ciudades
-        for (int i=0; i < CityNames.length; i++) {
-            if (CityNames[i]!=null) {
-                final String cityName = CityNames[i];
-                final int cityPos = i;
-                JLabel CityLabel = new JLabel();
-
-                //Características de los labels
-                CityLabel.setFont(new java.awt.Font("Arial", 0, 12)); 
-                CityLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png")));
-                CityLabel.setText(CityNames[i]);                
-                jPanelGame.add(CityLabel);
-            }
-            if (i == 1){
-            
-                JLabel CityLabel = new JLabel();
-
-                //Características de los labels
-                CityLabel.setFont(new java.awt.Font("Arial", 0, 12));
-                CityLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/ant .png"))); 
-                CityLabel.setText(CityNames[i]);                
-                jPanelGame.add(CityLabel);
-            }
-           
-                    
-        }
-    }*/
+  
     /**
      * @param args the command line arguments
      */
@@ -1471,30 +1436,11 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JButton AddCityjButton;
     private javax.swing.JTextField AntsNumInput;
     private javax.swing.JLabel AntsNumjLabel;
+    private javax.swing.JLabel AntsTravelInfojLabel;
+    private javax.swing.JPanel AntsTraveljPanel;
+    private javax.swing.JPanel AntsjPanel;
     private javax.swing.JPanel Cities1;
-    private javax.swing.JTextField CityDistanceInput;
-    private javax.swing.JButton CityDistanceValidationButton;
-    private javax.swing.JLabel CityDistancejLabel;
-    private javax.swing.JLabel CityImagejLabel1;
-    private javax.swing.JLabel CityImagejLabel10;
-    private javax.swing.JLabel CityImagejLabel11;
-    private javax.swing.JLabel CityImagejLabel12;
-    private javax.swing.JLabel CityImagejLabel13;
-    private javax.swing.JLabel CityImagejLabel14;
-    private javax.swing.JLabel CityImagejLabel15;
-    private javax.swing.JLabel CityImagejLabel16;
-    private javax.swing.JLabel CityImagejLabel17;
-    private javax.swing.JLabel CityImagejLabel18;
-    private javax.swing.JLabel CityImagejLabel19;
-    private javax.swing.JLabel CityImagejLabel2;
-    private javax.swing.JLabel CityImagejLabel20;
-    private javax.swing.JLabel CityImagejLabel3;
-    private javax.swing.JLabel CityImagejLabel4;
-    private javax.swing.JLabel CityImagejLabel5;
-    private javax.swing.JLabel CityImagejLabel6;
-    private javax.swing.JLabel CityImagejLabel7;
-    private javax.swing.JLabel CityImagejLabel8;
-    private javax.swing.JLabel CityImagejLabel9;
+    private javax.swing.JPanel CitiesjPanel;
     private javax.swing.JTextField CityNameInput;
     private javax.swing.JButton CityNameValidationButton;
     private javax.swing.JLabel CityNamejLabel1;
@@ -1514,12 +1460,14 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel NewGameOptionsjPanel;
     private javax.swing.JButton NewGamejButton;
     private javax.swing.JButton SavejButton;
+    private javax.swing.JButton ShowTravelsButton;
     private javax.swing.JButton StartGamejButton;
     private javax.swing.JLabel VariablesValuesjLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
     private javax.swing.JPanel jPanelMain;
