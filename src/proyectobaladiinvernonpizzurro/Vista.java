@@ -1372,8 +1372,8 @@ public class Vista extends javax.swing.JFrame {
                         if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta ciudad? ",
                                 "Eliminar ciudad", YES_NO_OPTION) == 0) {
                             //deleteCity = true;
-                            button.setVisible(false);
                             cityCounter -- ;
+                            button.setVisible(false);
                             if (cityCounter < 20){
                                 AddCityjButton.setEnabled(true);
                             }
@@ -1384,8 +1384,8 @@ public class Vista extends javax.swing.JFrame {
                                
                 Cities1.add(button);
             }
-            System.out.println("cc" + cityCounter + "aux" + aux);
-                if( cityCounter < aux){                   
+            System.out.println("cc" + this.cityCounter + "aux" + aux);
+                if( this.cityCounter < aux){                   
                    cities[i] = null;   
                     System.out.println("hola");
                    distanceMatrix.delete(i);
