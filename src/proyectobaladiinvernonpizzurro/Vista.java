@@ -744,7 +744,7 @@ public class Vista extends javax.swing.JFrame {
                         jPanelNewGame.setVisible(false);
                         jPanelGame.setVisible(true);
                         for (int i = 0; i < colonia.length; i++) {
-                            Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter);
+                            Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter, listaDeCiudades);
                             colonia[i]=h;
                         }
                     }
@@ -990,7 +990,7 @@ public class Vista extends javax.swing.JFrame {
         NodoVertice nodo = null;
         for (int i = 0; i < m; i++) {
             if(i==0){
-                nodo = listaDeCiudades.pFisrt;
+                nodo = listaDeCiudades.pFirst;
             }else{
             nodo = nodo.pNext;
             }
