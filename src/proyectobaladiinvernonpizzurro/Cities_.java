@@ -52,7 +52,7 @@ public class Cities_ {
         //Características de los labels 
         CityImagejLabel.setFont(new java.awt.Font("Arial", 0, 12)); 
         CityImagejLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png")));
-        CityImagejLabel.setBackground(Color.getHSBColor(213,204,206));
+        CityImagejLabel.setBackground(new java.awt.Color(213,204,206));
         CityImagejLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         CityImagejLabel.setVisible(!this.delete);
         CityImagejLabel.setOpaque(true);

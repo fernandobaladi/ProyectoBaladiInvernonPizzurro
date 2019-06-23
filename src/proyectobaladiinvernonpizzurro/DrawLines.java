@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author jinve
+ * @author Invernon
  */
 public class DrawLines extends JPanel{
     

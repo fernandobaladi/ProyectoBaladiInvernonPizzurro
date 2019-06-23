@@ -6,6 +6,11 @@
 package proyectobaladiinvernonpizzurro;
 
 import java.awt.Color;
+import static java.awt.FlowLayout.CENTER;
+import static java.awt.FlowLayout.TRAILING;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
@@ -14,7 +19,7 @@ import javax.swing.JLabel;
  * 
  */
 public class Ants_ {
-  Integer posX=0, posY=0, ID=0;
+  Integer posX=0, posY=0, ID;
   JLabel label;
 
     public Ants_() {
@@ -23,22 +28,24 @@ public class Ants_ {
 
     public Ants_(Integer posX, Integer posY, Integer Id) {
         System.out.println("posX: " + posX+ " pos Y: " + posY);
+        this.ID = Id;
         this.label = AntLabel();
         this.AntPosition(posX, posY);
-        this.ID = Id;
                
     }
    
     public JLabel AntLabel(){
         JLabel antIconLabel = new JLabel();   
         
-        //Características de los labels         
+        //Características de los labels      
+        antIconLabel.setFont(new java.awt.Font("Arial", 1, 12));        
         antIconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/littleant2.png")));
-        antIconLabel.setBackground(Color.getHSBColor(213,204,206));
+        antIconLabel.setBackground(new java.awt.Color(213,204,206));
         antIconLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         antIconLabel.setVisible(true);
-        antIconLabel.setOpaque(true);    
-        
+        antIconLabel.setOpaque(true);
+        antIconLabel.setText((this.ID).toString());
+     
         return antIconLabel;
     }
     
@@ -46,7 +53,7 @@ public class Ants_ {
         this.posX = posX;
         this.posY = posY;
         this.label.setBounds( posX, posY ,40,40);
-        this.label.setSize(20, 20);
+        this.label.setSize(40,25);
     }
     
     
