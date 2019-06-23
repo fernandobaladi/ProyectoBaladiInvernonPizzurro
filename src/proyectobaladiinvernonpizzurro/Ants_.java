@@ -27,7 +27,7 @@ public class Ants_ {
     }
 
     public Ants_(Integer posX, Integer posY, Integer Id) {
-        System.out.println("posX: " + posX+ " pos Y: " + posY);
+       
         this.ID = Id;
         this.label = AntLabel();
         this.AntPosition(posX, posY);
@@ -54,6 +54,11 @@ public class Ants_ {
         this.posY = posY;
         this.label.setBounds( posX, posY ,40,40);
         this.label.setSize(40,25);
+    }
+    
+    public void TotalDistance () {
+    
+        
     }
     
     

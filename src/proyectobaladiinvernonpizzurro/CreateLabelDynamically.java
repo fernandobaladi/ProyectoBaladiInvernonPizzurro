@@ -52,7 +52,7 @@ public class CreateLabelDynamically extends JFrame {
          // Por cada camino se crea una línea 
          
          for (int i=0; i<this.path.length; i++){
-            g.setColor(Color.blue);
+            g.setColor(Color.blue);            
             if (i==path.length-1){
             
                 g.drawLine(this.cities[i].posX + 20, this.cities[i].posY + 20, this.cities[0].posX + 20, this.cities[0].posY + 20);
@@ -66,12 +66,14 @@ public class CreateLabelDynamically extends JFrame {
          }
          
          for (int i=0; i < cities.length; i++) {
+            String aux = String.valueOf (i+1); 
             if( cities[i] != null ){
                 //PaintCity( cities[i].label, cities[i].posX , cities[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
                 g.setColor(Color.black);
                 g.fillRect(cities[i].posX, cities[i].posY, 40, 40);
                 g.drawString(cities[i].name, cities[i].posX, cities[i].posY + 50 );
                // g.drawRect(cities[i].posX, cities[i].posY, 50, 50);
+                g.drawString(aux, cities[i].posX + 15, cities[i].posY - 5);
             }
         }  
     }

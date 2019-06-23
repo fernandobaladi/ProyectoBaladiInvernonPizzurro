@@ -190,10 +190,7 @@ public class Vista extends javax.swing.JFrame {
         DrawCitiesButton = new javax.swing.JButton();
         ShowTravelsButton = new javax.swing.JButton();
         AntsTravelInfojLabel = new javax.swing.JLabel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
         CitiesjPanel = new javax.swing.JPanel();
-        AntsjPanel = new javax.swing.JPanel();
-        AntsTraveljPanel = new javax.swing.JPanel();
         jPanelInstruction = new javax.swing.JPanel();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
@@ -206,10 +203,10 @@ public class Vista extends javax.swing.JFrame {
         Cities1 = new javax.swing.JPanel();
         StartGamejButton = new javax.swing.JButton();
         NewGameOptionsjPanel = new javax.swing.JPanel();
-        AntsNumjLabel = new javax.swing.JLabel();
         AntsNumInput = new javax.swing.JTextField();
         CustomValuesButton = new javax.swing.JRadioButton();
         DefaultValuesButton = new javax.swing.JRadioButton();
+        AntsNumjLabel = new javax.swing.JLabel();
         VariablesValuesjLabel1 = new javax.swing.JLabel();
         βVariableValuejLabel = new javax.swing.JLabel();
         βValueInput = new javax.swing.JTextField();
@@ -262,121 +259,36 @@ public class Vista extends javax.swing.JFrame {
         AntsTravelInfojLabel.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
         AntsTravelInfojLabel.setText("Para ver la trayectoria de solo una hormiga darle click a la hormiga");
 
-        jLayeredPane2.setMaximumSize(new java.awt.Dimension(500, 500));
-        jLayeredPane2.setPreferredSize(new java.awt.Dimension(500, 500));
-
         CitiesjPanel.setBackground(new java.awt.Color(213, 204, 206));
-
-        javax.swing.GroupLayout CitiesjPanelLayout = new javax.swing.GroupLayout(CitiesjPanel);
-        CitiesjPanel.setLayout(CitiesjPanelLayout);
-        CitiesjPanelLayout.setHorizontalGroup(
-            CitiesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        CitiesjPanelLayout.setVerticalGroup(
-            CitiesjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        AntsjPanel.setBackground(new java.awt.Color(213, 204, 206));
-        AntsjPanel.setMinimumSize(new java.awt.Dimension(500, 500));
-        AntsjPanel.setName(""); // NOI18N
-
-        javax.swing.GroupLayout AntsjPanelLayout = new javax.swing.GroupLayout(AntsjPanel);
-        AntsjPanel.setLayout(AntsjPanelLayout);
-        AntsjPanelLayout.setHorizontalGroup(
-            AntsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        AntsjPanelLayout.setVerticalGroup(
-            AntsjPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        AntsTraveljPanel.setBackground(new java.awt.Color(213, 204, 206));
-        AntsTraveljPanel.setMinimumSize(new java.awt.Dimension(0, 0));
-        AntsTraveljPanel.setOpaque(false);
-        AntsTraveljPanel.setPreferredSize(new java.awt.Dimension(500, 500));
-
-        javax.swing.GroupLayout AntsTraveljPanelLayout = new javax.swing.GroupLayout(AntsTraveljPanel);
-        AntsTraveljPanel.setLayout(AntsTraveljPanelLayout);
-        AntsTraveljPanelLayout.setHorizontalGroup(
-            AntsTraveljPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-        AntsTraveljPanelLayout.setVerticalGroup(
-            AntsTraveljPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
-        jLayeredPane2.setLayer(CitiesjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(AntsjPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane2.setLayer(AntsTraveljPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPane2Layout = new javax.swing.GroupLayout(jLayeredPane2);
-        jLayeredPane2.setLayout(jLayeredPane2Layout);
-        jLayeredPane2Layout.setHorizontalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(AntsTraveljPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addComponent(AntsjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE)))
-            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                    .addGap(28, 28, 28)
-                    .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(29, Short.MAX_VALUE)))
-        );
-        jLayeredPane2Layout.setVerticalGroup(
-            jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(AntsTraveljPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(AntsjPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
-            .addGroup(jLayeredPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPane2Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(109, Short.MAX_VALUE)))
-        );
+        CitiesjPanel.setMinimumSize(new java.awt.Dimension(500, 500));
+        CitiesjPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         javax.swing.GroupLayout jPanelGameLayout = new javax.swing.GroupLayout(jPanelGame);
         jPanelGame.setLayout(jPanelGameLayout);
         jPanelGameLayout.setHorizontalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelGameLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelGameLayout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 533, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelGameLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelGameLayout.createSequentialGroup()
+                                .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelGameLayout.setVerticalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelGameLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(DrawCitiesButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLayeredPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -541,9 +453,6 @@ public class Vista extends javax.swing.JFrame {
 
         NewGameOptionsjPanel.setBackground(new java.awt.Color(213, 204, 206));
 
-        AntsNumjLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        AntsNumjLabel.setText("Cantidad de hormigas");
-
         AntsNumInput.setBackground(new java.awt.Color(192, 178, 181));
         AntsNumInput.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         AntsNumInput.setBorder(null);
@@ -570,6 +479,9 @@ public class Vista extends javax.swing.JFrame {
                 DefaultValuesButtonActionPerformed(evt);
             }
         });
+
+        AntsNumjLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        AntsNumjLabel.setText("Cantidad de hormigas");
 
         VariablesValuesjLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         VariablesValuesjLabel1.setText("Valores de β, α y ρ");
@@ -871,7 +783,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPanelGame, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jPanelInstruction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelMain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -889,10 +801,6 @@ public class Vista extends javax.swing.JFrame {
                
                DeleteData();
                initializeComponents();
-               
-               for(int i=0; i<Cities_.length; i++){
-                    System.out.println(Cities_[i] + " ");
-               }
             }
         }
         
@@ -968,9 +876,9 @@ public class Vista extends javax.swing.JFrame {
             {  
                 public void mouseClicked(MouseEvent e)  
                 {  
-                  //ants [index].label.setLocation(400, 100);
-                  //drawCities();
-                  drawCitiesFullPanel (index);
+                    ants[index].label.setLocation(400, 100);
+//                  drawCities();
+                    drawCitiesFullPanel (index+1);
                 }  
             }); 
         }        
@@ -980,28 +888,45 @@ public class Vista extends javax.swing.JFrame {
         for (int i=0; i < AntsNum; i++) {    
             if( ants[i] != null ){   
                 CitiesjPanel.add(ants[i].label);
-                CitiesjPanel.add(new DrawLines());
-                CitiesjPanel.validate();
-                CitiesjPanel.repaint();
             }
         } 
+        
+        repaintPanel();
     }
     
     //Se pintan las ciudades en la pantalla de juego
     public void drawCities (){
                
+      
         //CitiesjPanel.removeAll();
-                
         for (int i=0; i < Cities_.length; i++) {
             if( Cities_[i] != null ){
+                JLabel name = new JLabel();
+                
                 Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
+                name.setBounds(Cities_[i].posX , Cities_[i].posY + 40, 100 , 20 );
+                name.setText(Cities_[i].name);
+                name.setVisible(true);
+                name.setOpaque(true);
                 CitiesjPanel.add(Cities_[i].label);
-                CitiesjPanel.validate();
-                CitiesjPanel.repaint();
+                CitiesjPanel.add(name);
             }
         }        
         
+        repaintPanel();
+        
 //        drawCitiesFullPanel ();
+    }
+    
+    public void drawCitiesPanel(){
+            CitiesjPanel.setLayout(null);
+            CitiesjPanel.setBounds(50,60,510,500);
+            CitiesjPanel.setOpaque(true);
+    }
+    
+    public void repaintPanel(){
+        CitiesjPanel.validate();
+        CitiesjPanel.repaint();
     }
     
     //Se pintan las ciudades en la pantalla de recorrido de las hormigas
@@ -1019,12 +944,12 @@ public class Vista extends javax.swing.JFrame {
         c.setSize(700,700);
         c.setVisible(true);
         
-        for (int i=0; i < Cities_.length; i++) {
-            if( Cities_[i] != null ){
-                Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
-                c.PaintCity( Cities_[i].label, Cities_[i].posX , Cities_[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
-            }
-        }        
+//        for (int i=0; i < Cities_.length; i++) {
+//            if( Cities_[i] != null ){
+//                Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
+////                c.PaintCity( Cities_[i].label, Cities_[i].posX , Cities_[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
+//            }
+//        }        
     }
     
     //Se asigna la posición X de las ciudades en el panel 
@@ -1127,8 +1052,9 @@ public class Vista extends javax.swing.JFrame {
 
     private void StartGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGamejButtonActionPerformed
 
+        //drawTest();
         if (cityCounter<4) {
-
+            
             JOptionPane.showMessageDialog(null, "No puedes empezar tu partida con menos de 4 ciudades");
         }
         else {
@@ -1354,10 +1280,8 @@ public class Vista extends javax.swing.JFrame {
                 aux = i;  
                 break;
             }
-            
         }
-        System.out.println("sdsad " + aux);
-       return aux; 
+        return aux; 
     }
     private void CityNameValidationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CityNameValidationButtonActionPerformed
              
@@ -1373,31 +1297,38 @@ public class Vista extends javax.swing.JFrame {
                 
                 // Se asignan las distancias de la ciudad respecto a cada una de las ciudades existentes
                 if (cityCounter != 0){
-                    int cityLeft = cityCounter;
+                    int cityLeft = CityId;
+                                        
                     do {
-                        String cityDistanceString = JOptionPane.showInputDialog("Distancia de " + cityName + " respecto a " 
-                                + Cities_[cityCounter-cityLeft].name + "\n SOLO VALORES NUMERICOS");
                         
-                        if (cityDistanceString == null) {
-                           
-                        }
-                        else if (cityDistanceString.isEmpty()){
+                        if (Cities_[CityId-cityLeft] != null) {
                         
-                            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
-                        }
-                        else if (cityDistanceString != null || !cityDistanceString.equals("0")) {
-                            //int col = cityCounter;
-                            //int row = cityCounter - cityLeft;
-                            cityDistance = Double.parseDouble(cityDistanceString); //se asigna la distancia (Double) a la variable
-                            //this.distanceMatrix.setDistance( row , col , cityDistance);
+                            String cityDistanceString = JOptionPane.showInputDialog("Distancia de " + cityName + " respecto a " 
+                                + Cities_[CityId-cityLeft].name + "\n SOLO VALORES NUMERICOS");
+                            
+                            if (cityDistanceString.isEmpty()){
 
+                                JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+                            }
+                            else if (cityDistanceString == null) {
+
+                            }
+                            else if (cityDistanceString != null || !cityDistanceString.equals("0")) {
+                                //int col = cityCounter;
+                                //int row = cityCounter - cityLeft;                            
+                                cityDistance = Double.parseDouble(cityDistanceString); //se asigna la distancia (Double) a la variable
+                                //this.distanceMatrix.setDistance( row , col , cityDistance);
+
+                                cityLeft--;
+                            }
+                            else if (Double.parseDouble(cityDistanceString) <= 0) {
+
+                                JOptionPane.showMessageDialog(null, "Distancia inválida. Ingresa un número mayor que 0");
+                            }
+                        }
+                        else {
                             cityLeft--;
                         }
-                        else if (Double.parseDouble(cityDistanceString) <= 0) {
-
-                            JOptionPane.showMessageDialog(null, "Distancia inválida. Ingresa un número mayor que 0");
-                        }
-                        
                     }while (cityLeft>0);
                 }else{
                     
@@ -1419,8 +1350,9 @@ public class Vista extends javax.swing.JFrame {
 
     private void DrawCitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DrawCitiesButtonActionPerformed
         
-        drawCities();
+        drawCitiesPanel();
         drawAnts();
+        drawCities();
                
 //        drawTest();
     }//GEN-LAST:event_DrawCitiesButtonActionPerformed
@@ -1461,17 +1393,17 @@ public class Vista extends javax.swing.JFrame {
         }
     }
     
-    //Prueba 
-    public void drawTest(){
-        this.cityCounter = 13;
-        Tests test = new Tests();
-        for( int i = 0 ; i < test.getCiudades().length ; i++ ){
-            
-            Cities_[i] = new Cities_( test.getCiudades()[i] , i );
-        }
-        
-        drawFullPanel(Cities_, test.getCaminos(), 1);
-    }
+//    //Prueba 
+//    public void drawTest(){
+//        this.cityCounter = 13;
+//        Tests test = new Tests();
+//        for( int i = 0 ; i < test.getCiudades().length ; i++ ){
+//            
+//            Cities_[i] = new Cities_( test.getCiudades()[i] , i );
+//        }
+//        
+////        drawFullPanel(Cities_, test.getCaminos(), 1);
+//    }
     
     //Eliminaar ciudad de la partida
     public void deleteCity (JButton button, Cities_[] cities, int pos){
@@ -1553,8 +1485,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JTextField AntsNumInput;
     private javax.swing.JLabel AntsNumjLabel;
     private javax.swing.JLabel AntsTravelInfojLabel;
-    private javax.swing.JPanel AntsTraveljPanel;
-    private javax.swing.JPanel AntsjPanel;
     private javax.swing.JPanel Cities1;
     private javax.swing.JPanel CitiesjPanel;
     private javax.swing.JTextField CityNameInput;
@@ -1582,7 +1512,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
     private javax.swing.JPanel jPanelMain;
