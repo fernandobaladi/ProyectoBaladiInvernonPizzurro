@@ -17,15 +17,15 @@ public class Cities_ {
     Integer posX, posY, ID;
     String name;
     JLabel label;
-    Boolean visible;
+    Boolean delete;
 
-    public Cities_(Integer posX, Integer posY, Integer ID, String name, JLabel label, Boolean Visible) {
+    public Cities_(Integer posX, Integer posY, Integer ID, String name, JLabel label, Boolean delete) {
         this.posX = posX;
         this.posY = posY;
         this.ID = ID;
         this.name = name;
         this.label = label;
-        this.visible = Visible;
+        this.delete = delete;
     }
     
     public Cities_( String name , int Id ) {
@@ -33,13 +33,14 @@ public class Cities_ {
         this.posX = 0;
         this.posY = 0;
         this.ID = Id;
-        this.visible = true;
+        this.delete = false;
         this.label = this.CityLabel();
         
          
     }
    
     public Cities_() {
+        
     }
     
     public void destroyCity () {
@@ -53,7 +54,7 @@ public class Cities_ {
         CityImagejLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/city.png")));
         CityImagejLabel.setBackground(Color.getHSBColor(213,204,206));
         CityImagejLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        CityImagejLabel.setVisible(this.visible);
+        CityImagejLabel.setVisible(!this.delete);
         CityImagejLabel.setOpaque(true);
         CityImagejLabel.setText(this.name);
         

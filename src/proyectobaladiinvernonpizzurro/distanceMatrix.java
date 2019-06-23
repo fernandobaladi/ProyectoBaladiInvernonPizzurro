@@ -10,13 +10,13 @@ package proyectobaladiinvernonpizzurro;
  * @author Invernon
  */
 public class distanceMatrix {
-    float distanceMatrix[][] = new float[20][20];
+    double distanceMatrix[][] = new double[20][20];
 
     public distanceMatrix() {
         this.InitialMatrix();
     }
 
-    public void setDistance(int row , int col, float value) {
+    public void setDistance(int row , int col, double value) {
         this.distanceMatrix[row][col] = value;
         this.distanceMatrix[col][row] = value;
     }

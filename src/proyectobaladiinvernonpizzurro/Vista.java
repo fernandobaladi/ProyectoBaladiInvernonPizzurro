@@ -36,22 +36,21 @@ import javax.swing.text.PlainDocument;
 public class Vista extends javax.swing.JFrame {
     
     //Contador de ciudades existentes en la partida
-        int cityCounter=4;
-        
-        
+        int cityCounter = 0;
+        int AntsNum=0, Iterations, βValue, αValue;
+        double ρValue, cityDistance;
+        String cityName;
+                
         JButton jButton1 = new javax.swing.JButton();
+        ListaVertices listaDeCiudades = new ListaVertices("Lista de ciudades");
+        Hormiga[] colonia;
         JLabel CityImage = new javax.swing.JLabel();        
         JLabel Cities[] = new JLabel [20];        
         private Image ant = new ImageIcon("ant .png").getImage();
-        int AntsNum=0, Iterations, βValue, αValue;
-        float ρValue, cityDistance;
-        String cityName;
-        
-        Cities_ Cities_[] = new Cities_ [20];
-        distanceMatrix distanceMatrix = new distanceMatrix();
+        Cities_ Cities_[] = new Cities_ [20];        
+        //distanceMatrix distanceMatrix = new distanceMatrix();
         boolean deleteCity = false;
-        Tests Test = new Tests();
-        
+        Tests Test = new Tests();         
     
     public Vista() {
              
@@ -181,7 +180,6 @@ public class Vista extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelGame = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jPanelInstruction = new javax.swing.JPanel();
         DrawCitiesButton = new javax.swing.JButton();
         ShowTravelsButton = new javax.swing.JButton();
@@ -234,23 +232,15 @@ public class Vista extends javax.swing.JFrame {
         jPanelGame.setBackground(new java.awt.Color(213, 204, 206));
         jPanelGame.setPreferredSize(new java.awt.Dimension(600, 500));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectobaladiinvernonpizzurro/SmallAnt.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanelGameLayout = new javax.swing.GroupLayout(jPanelGame);
         jPanelGame.setLayout(jPanelGameLayout);
         jPanelGameLayout.setHorizontalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabel4)
-                .addContainerGap(477, Short.MAX_VALUE))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         jPanelGameLayout.setVerticalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelGameLayout.createSequentialGroup()
-                .addGap(116, 116, 116)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanelInstruction.setBackground(new java.awt.Color(213, 204, 206));
@@ -743,7 +733,7 @@ public class Vista extends javax.swing.JFrame {
         InstructionsjButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         InstructionsjButton.setText("Instrucciones");
         InstructionsjButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        InstructionsjButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        InstructionsjButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         InstructionsjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InstructionsjButtonActionPerformed(evt);
@@ -754,13 +744,13 @@ public class Vista extends javax.swing.JFrame {
         SavejButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         SavejButton.setText("Guardar");
         SavejButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        SavejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SavejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         LoadGamejButton.setBackground(new java.awt.Color(164, 225, 3));
         LoadGamejButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         LoadGamejButton.setText("Cargar Partida");
         LoadGamejButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        LoadGamejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        LoadGamejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         LoadGamejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoadGamejButtonActionPerformed(evt);
@@ -771,7 +761,7 @@ public class Vista extends javax.swing.JFrame {
         ExitjButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         ExitjButton.setText("Salir");
         ExitjButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(247, 139, 45), 2, true));
-        ExitjButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        ExitjButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         ExitjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExitjButtonActionPerformed(evt);
@@ -782,7 +772,7 @@ public class Vista extends javax.swing.JFrame {
         NewGamejButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         NewGamejButton.setText("Nueva Partida");
         NewGamejButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-        NewGamejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        NewGamejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         NewGamejButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewGamejButtonActionPerformed(evt);
@@ -935,12 +925,10 @@ public class Vista extends javax.swing.JFrame {
 
                 //Vaciar el array de ciudades 
                
-                    //Cities_ = null;
-                
-                
-                //Vaciar el array de distancias 
-                
-        
+//                for(int i=0; i<Cities_.length; i++){
+//                   Cities_[i] = null;
+//               }
+                     
     }
     private void ExitjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitjButtonActionPerformed
        
@@ -958,8 +946,46 @@ public class Vista extends javax.swing.JFrame {
         jPanelInstruction.setVisible(true);
                 
     }//GEN-LAST:event_InstructionsjButtonActionPerformed
-
     
+    public void drawAnts () {
+            
+        Ants_ ants[] = new Ants_[AntsNum];
+        
+        for (int i=0; i < AntsNum; i++) {
+            ants[i] = new Ants_(i,(i*100), (i+1));
+            
+        }        
+       /*CreateLabelDynamically c = new CreateLabelDynamically();
+        c.setTitle("Ciudades");
+        c.setSize(700,700);
+        c.setVisible(true);*/
+        
+       // AntsjPanel.removeAll();
+        
+        System.out.println("numero hor "  +AntsNum);
+                
+        for (int i=0; i < AntsNum; i++) {
+            System.out.println("estoy aqui");
+                 
+            if( ants[i] != null ){
+           
+                System.out.println("entro");
+                                
+                //c.PaintCity( ants.label, ants.posX , ants.posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
+
+                CitiesjPanel.add(ants[i].label);
+                CitiesjPanel.add(new DrawLines());
+                CitiesjPanel.validate();
+                CitiesjPanel.repaint();
+                           
+            }
+          
+        } 
+        
+        //this.distanceMatrix.drawMatrix();
+    
+        
+    }
     
     public void drawCities (){
        
@@ -969,14 +995,22 @@ public class Vista extends javax.swing.JFrame {
         c.setVisible(true);*/
         
         CitiesjPanel.removeAll();
+        System.out.println("length " + Cities_.length);
         
-        for (int i=0; i < cityCounter; i++) {
+        for (int i=0; i < Cities_.length; i++) {
             
+            System.out.println("cityC " + cityCounter);
+            
+            
+            if( Cities_[i] != null ){
+                
+            System.out.println("name " + Cities_[i].name);
+                System.out.println("entro");
+                            
                 Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
                 
-                System.out.println(Cities_[i].posX + "  " + Cities_[i].posY + " - nombre " + Cities_[i].name);
-                
-//                c.PaintCity( Cities_[i].label, Cities_[i].posX , Cities_[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
+                //System.out.println(Cities_[i].posX + "  " + Cities_[i].posY + " - nombre " + Cities_[i].name);
+                //c.PaintCity( Cities_[i].label, Cities_[i].posX , Cities_[i].posY ); //Esta es para que se pinte en el cuadro extra. Se tiene que desactivar el otro.
                 
 //              AntsjPanel.add(Cities_[i].label);
 
@@ -986,17 +1020,16 @@ public class Vista extends javax.swing.JFrame {
                            
             }
         
-        for( int j = 0 ; j < Cities_.length ; j++){
-            if( Cities_[j] != null ){
-                System.out.println("Ciudad: " + Cities_[j].name + " - PosX : " + Cities_[j].posX + " - PosY : " + Cities_[j].posY );
-            }
-        }
-                
-        this.distanceMatrix.drawMatrix();
-        
+//        for( int j = 0 ; j < Cities_.length ; j++){
+//            if( Cities_[j] != null ){
+//                System.out.println("Ciudad: " + Cities_[j].name + " - PosX : " + Cities_[j].posX + " - PosY : " + Cities_[j].posY );
+//            }
+//        }
+        }        
+        //this.distanceMatrix.drawMatrix();
     }
     
-        public int AsignPositionX (int i, int cityCounter){
+    public int AsignPositionX (int i, int cityCounter){
         int var;
         double posX;   
         var = 100;               
@@ -1119,6 +1152,11 @@ public class Vista extends javax.swing.JFrame {
                         SavejButton.setEnabled(true);
                         jPanelNewGame.setVisible(false);
                         jPanelGame.setVisible(true);
+                        
+                        for (int i = 0; i < colonia.length; i++) {
+                            Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter, listaDeCiudades);
+                            colonia[i]=h;
+                        }
                                               
                     }
 
@@ -1147,37 +1185,57 @@ public class Vista extends javax.swing.JFrame {
                 }
                 else{
                 
-                    if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida?", 
-                            "Valores de la partida", YES_NO_OPTION) == 0) {
+                    if (!AntsNumInput.getText().equals("0") && !IterationsInput.getText().equals("0")) {
+                        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida?", 
+                                "Valores de la partida", YES_NO_OPTION) == 0) {
 
-                        AntsNumInput.setEditable(false);
-                        IterationsInput.setEditable(false);
-                        CustomValuesButton.setEnabled(false);
-                        DefaultValuesButton.setEnabled(false);
-                        AddCityjButton.setEnabled(true);
-                        DeleteCityjButton.setEnabled(true);
-                        AntsNum = Integer.parseInt(AntsNumInput.getText());
-                        Iterations = Integer.parseInt(IterationsInput.getText());
-                        βValue = Integer.parseInt(βValueInput.getText());
-                        αValue = Integer.parseInt(αValueInput.getText());
-                        ρValue = Float.parseFloat(ρValueInput.getText());
-                               
+                            AntsNumInput.setEditable(false);
+                            IterationsInput.setEditable(false);
+                            CustomValuesButton.setEnabled(false);
+                            DefaultValuesButton.setEnabled(false);
+                            AddCityjButton.setEnabled(true);
+                            DeleteCityjButton.setEnabled(true);
+                            AntsNum = Integer.parseInt(AntsNumInput.getText());
+                            Iterations = Integer.parseInt(IterationsInput.getText());
+                            βValue = Integer.parseInt(βValueInput.getText());
+                            αValue = Integer.parseInt(αValueInput.getText());
+                            ρValue = Double.parseDouble(ρValueInput.getText());
+                            colonia = new Hormiga[AntsNum];
+
+                        }
+                    }
+                    else{
+                    
+                        JOptionPane.showMessageDialog(null, "Valores inválidos! No puedes tener ni 0 hormigas ni 0 iteraciones");
                     }
                 }
             }
             else {
 
-                if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida? ",
-                        "Valores de la partida", YES_NO_OPTION) == 0) {
+                if (!AntsNumInput.getText().equals("0") && !IterationsInput.getText().equals("0")) {
+                    
+                        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas estos valores en tu partida?", 
+                                "Valores de la partida", YES_NO_OPTION) == 0) {
 
-                    AntsNumInput.setEditable(false);
-                    IterationsInput.setEditable(false);
-                    CustomValuesButton.setEnabled(false);
-                    DefaultValuesButton.setEnabled(false);
-                    AddCityjButton.setEnabled(true);
-                    DeleteCityjButton.setEnabled(true);
-                }
+                            AntsNumInput.setEditable(false);
+                            IterationsInput.setEditable(false);
+                            CustomValuesButton.setEnabled(false);
+                            DefaultValuesButton.setEnabled(false);
+                            AddCityjButton.setEnabled(true);
+                            DeleteCityjButton.setEnabled(true);
+                            AntsNum = Integer.parseInt(AntsNumInput.getText());
+                            Iterations = Integer.parseInt(IterationsInput.getText());
+                            βValue = 2;
+                            αValue = 1;
+                            ρValue = 0.5;
+                            colonia = new Hormiga[AntsNum];
 
+                        }
+                    }
+                    else{
+                    
+                        JOptionPane.showMessageDialog(null, "Valores inválidos! No puedes tener ni 0 hormigas ni 0 iteraciones");
+                    }
             }
         }
         else {
@@ -1227,7 +1285,6 @@ public class Vista extends javax.swing.JFrame {
         DeleteCityjPanel.setVisible(true);
         Cities1.removeAll();        
         Cities1.setLayout(new GridLayout(4,5,8,8));
-        
         drawButtonCities (Cities_);
 
         
@@ -1264,15 +1321,17 @@ public class Vista extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Debes llenar todos los campos antes de continuar");
         }
-        else{            
-            cityCounter++;            
+        else{
+            
+            cityCounter++;
+            listaDeCiudades.agregarAlFinal(CityNameInput.getText(), cityCounter);
             ConfirmNewCityjButton.setEnabled(false);
 
              // Aca se debe añadir la nueva ciudad al Arreglo ( Array ) 
             Cities_[cityCounter-1] = new Cities_( cityName , cityCounter - 1 );
 
             //Se llena la diagonal de 0s
-            this.distanceMatrix.setDistance(cityCounter - 1, cityCounter - 1, 0);
+            //this.distanceMatrix.setDistance(cityCounter - 1, cityCounter - 1, 0);
             
             //Se habilita de nuev el botón de agregar ciudad
             AddCityjButton.setEnabled(true);
@@ -1299,29 +1358,37 @@ public class Vista extends javax.swing.JFrame {
                 CityNameValidationButton.setEnabled(false);
                 cityName = CityNameInput.getText();
                 
-                // Se asignan las distancias.
+                // Se asignan las distancias
                 if (cityCounter != 0){
                     int cityLeft = cityCounter;
                     do {
                         String cityDistanceString = JOptionPane.showInputDialog("Distancia de " + cityName + " respecto a " + Cities_[cityCounter-cityLeft].name
                                 + "\n SOLO VALORES NUMERICOS");
                         
-                        if (cityDistanceString.equals(null) || !cityDistanceString.equals("")) {
-                            int col = cityCounter;
-                            int row = cityCounter - cityLeft;
-                            cityDistance = Float.parseFloat(cityDistanceString);
-                            this.distanceMatrix.setDistance( row , col , cityDistance);
+                        if (cityDistanceString == null) {
+                           
+                        }
+                        else if (cityDistanceString.isEmpty()){
+                        
+                            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+                        }
+                        else if (cityDistanceString != null || !cityDistanceString.equals("0")) {
+                            //int col = cityCounter;
+                            //int row = cityCounter - cityLeft;
+                            cityDistance = Double.parseDouble(cityDistanceString); //se asigna la distancia (Double) a la variable
+                            //this.distanceMatrix.setDistance( row , col , cityDistance);
 
                             cityLeft--;
                         }
-                        else {
+                        else if (Double.parseDouble(cityDistanceString) <= 0) {
 
-                            JOptionPane.showMessageDialog(null, "Campo vacío. Introduzca un valor antes de continuar");
+                            JOptionPane.showMessageDialog(null, "Distancia inválida. Ingresa un número mayor que 0");
                         }
-
+                        
                     }while (cityLeft>0);
                 }else{
-                    this.distanceMatrix.setDistance(0, 0, 0);
+                    
+                    //this.distanceMatrix.setDistance(0, 0, 0);
                 }
             }
         }
@@ -1340,6 +1407,7 @@ public class Vista extends javax.swing.JFrame {
     private void DrawCitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DrawCitiesButtonActionPerformed
         
         drawCities();
+        drawAnts();
                
         
     }//GEN-LAST:event_DrawCitiesButtonActionPerformed
@@ -1349,51 +1417,59 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_ShowTravelsButtonActionPerformed
 
     private void drawButtonCities (Cities_[] cities) {
-    
-        int aux = cityCounter;
+         
         //Creación de los botones de ciudades
         for (int i=0; i < cities.length; i++) {
             if ( cities[i] != null ) {
                 
+                final int index =  i;
                 final String cityName = cities[i].name;
                // deleteCity = false;
                 JButton button = new JButton(cityName);
-
+                
                 //Características de los botones 
                 button.setBackground(new java.awt.Color(164, 225, 3));
                 button.setMinimumSize(new Dimension(100, 50));
                 button.setPreferredSize(new Dimension(100, 50));
                 button.setFont(new java.awt.Font("Arial", 0, 14)); 
                 button.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
-
+                
                 //Funciones de los botones creados
                 button.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta ciudad? ",
-                                "Eliminar ciudad", YES_NO_OPTION) == 0) {
-                            //deleteCity = true;
-                            cityCounter -- ;
-                            button.setVisible(false);
-                            if (cityCounter < 20){
-                                AddCityjButton.setEnabled(true);
-                            }
-                            //drawButtonCities(CityNames);
-                        }
+                        deleteCity(button, cities, index);
                     }
                 });
                                
                 Cities1.add(button);
             }
-            System.out.println("cc" + this.cityCounter + "aux" + aux);
-                if( this.cityCounter < aux){                   
-                   cities[i] = null;   
-                    System.out.println("hola");
-                   distanceMatrix.delete(i);
-                }
-                              
+            
         }
     }
     
+    public void deleteCity (JButton button, Cities_[] cities, int pos){
+    
+        // método para eliminar la ciudad deben eliminarla de la lista 
+        System.out.println(pos);
+        int aux = cityCounter;
+        
+        if (JOptionPane.showConfirmDialog(null, "¿Estás seguro de que deseas eliminar esta ciudad? ",
+                "Eliminar ciudad", YES_NO_OPTION) == 0) {
+            
+            cityCounter -- ;
+            button.setVisible(false);
+            if (cityCounter < 20){
+                AddCityjButton.setEnabled(true);
+            }
+                    
+            System.out.println("cc" + this.cityCounter + "aux" + aux);
+                if( this.cityCounter < aux){                   
+                   cities[pos].delete = true;   
+                   System.out.println("hola");
+                   //distanceMatrix.delete(pos);
+                }
+        }
+    }
   
     /**
      * @param args the command line arguments
@@ -1431,6 +1507,21 @@ public class Vista extends javax.swing.JFrame {
         });
         
     }
+    
+    public NodoVertice escogerCiudadDeHormiga(){
+        int n = cityCounter;
+        int m =(int) (Math.random()*n)+1;
+        NodoVertice nodo = null;
+        for (int i = 0; i < m; i++) {
+            if(i==0){
+                nodo = listaDeCiudades.pFirst;
+            }else{
+            nodo = nodo.pNext;
+            }
+        }
+        return nodo;
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddCityjButton;
@@ -1465,7 +1556,6 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel VariablesValuesjLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanelGame;

@@ -6,6 +6,7 @@
 package proyectobaladiinvernonpizzurro;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,5 +41,11 @@ public class CreateLabelDynamically extends JFrame {
         Jpan.add(label);
         
         this.PanelRepaint();
+    }
+    
+    protected void paintComponent (Graphics g) {
+    
+        g.setColor(Color.red);
+        g.drawLine(100, 100, 300, 300);
     }
 }
