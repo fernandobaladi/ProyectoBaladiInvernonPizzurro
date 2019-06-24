@@ -1393,6 +1393,7 @@ public class Vista extends javax.swing.JFrame {
         c2.setTitle("Resultados finales de la partida ");
         c2.setSize(700,700);
         c2.setVisible(true);
+        
      
     }
     //Creación de los botones de las ciuades en la pantalla de eliminar ciudad 
