@@ -9,7 +9,9 @@ package proyectobaladiinvernonpizzurro;
  *
  * @author Fernando Baladi
  */
+
 public class Hormiga {
+    
     public int nCiudades;
     public int[] cRecorridas;
     public NodoVertice ciudadInicial;
@@ -35,7 +37,7 @@ public class Hormiga {
     
     public int costo = 0;
     public int[] arrayAristas;
-    
+    public double[] arrayPrueba;
     
     
     public void irASiguienteCiudad(ListaVertices vertices, int númeroDeCiudadesYaRecorridas) {
@@ -144,7 +146,6 @@ public class Hormiga {
 
                 while (! (random >= array2[contador] && random <= array2[contador+1])) {
                     contador++;
-                    System.out.println("qlq");
                 }
 
                 for (int i = 0; i < contador; i++) {
@@ -164,7 +165,6 @@ public class Hormiga {
         costo += nodo.distancia;
 
         arrayAristas[númeroDeCiudadesYaRecorridas] = nodo.id;
-
 
         NodoVertice nodoSiguiente = vertices.pFirst;
 
@@ -228,6 +228,7 @@ public class Hormiga {
     
     public void actualizarFeromonas(int costo, ListaVertices vertices) {
         
+        
         for (int i = 0; i < arrayAristas.length; i++) {
         
             NodoVertice nodoV = vertices.pFirst;
@@ -242,79 +243,62 @@ public class Hormiga {
             while (nodoA.id != arrayAristas[i]) {
                 nodoA = nodoA.pNext;
             }
-
-
+            
+            
+            
             if (nodoA == nodoV.nodosAristasAdyacentes.pFirst) {
 
                 nodoV.nodosAristasAdyacentes.pFirst.feromonas = Q / costo;
+                arrayPrueba[0] = nodoV.nodosAristasAdyacentes.pFirst.feromonas;
 
             } else {
 
                 NodoArista nodoAristaAuxiliar = nodoV.nodosAristasAdyacentes.pFirst;
+                
                 while (nodoAristaAuxiliar.pNext != nodoA) {
                     nodoAristaAuxiliar = nodoAristaAuxiliar.pNext;
                 }
-
+                
                 nodoAristaAuxiliar.pNext.feromonas = Q / costo;
+                arrayPrueba[i] = nodoAristaAuxiliar.pNext.feromonas;
             }
        
         }
         
+        
+        
     }
     
     
+    public double[] globales = new double[30];
     
     public void feromonasGlobal(ListaVertices vertices) {
         
         NodoVertice nodoV = vertices.pFirst;
         NodoArista nodoA = nodoV.nodosAristasAdyacentes.pFirst;
         
-        for (int i = 0; i < vertices.nNodos; i++) {
+        for (int i = 0; i < vertices.getnNodos() - 1; i++) {
             
             nodoV.nodosAristasAdyacentes.pFirst.feromonas = (1 - ro) * nodoA.feromonas;
+            globales[i] = nodoV.nodosAristasAdyacentes.pFirst.feromonas;
             
-            for (int j = 0; j < nodoV.nodosAristasAdyacentes.nNodos - 1; j++) {
+            for (int j = 0; j < nodoV.nodosAristasAdyacentes.getnNodos() - 1; j++) {
                 
-                nodoA.pNext.feromonas = (1 - ro) * nodoA.feromonas;
+                nodoA.pNext.feromonas = (1 - ro) * nodoA.pNext.feromonas;
+                
+                globales[j+i] = nodoA.pNext.feromonas;
+                
                 nodoA = nodoA.pNext;
+                
+                
             }
             
             nodoV = nodoV.pNext;
+            nodoA = nodoV.nodosAristasAdyacentes.pFirst;
         }
     }
     
     
-    
-//    public void ingresarProbabilidadEnElArray(double array[], double sumatoria, NodoArista nodoDeListaAristas){
-//    
-//    
-//        for (int i = 0; i <this.ciudadActual.nodosAristasAdyacentes.nNodos; i++) {
-//
-//                if (hayQueRecorrer(nodoDeListaAristas)) {
-//                    double qlq = (double) 1/nodoDeListaAristas.distancia;
-//                    double numero =  Math.pow(nodoDeListaAristas.feromonas, alfa) * Math.pow(qlq, beta);
-//                    array[i+1] = numero;
-//                    System.out.println(nodoDeListaAristas.etiqueta);
-//                    sumatoria += array[i+1];
-//                    nodoDeListaAristas = ciudadActual.nodosAristasAdyacentes.nodoSiguiente(nodoDeListaAristas);   
-//                    if (isFull(array)) {
-//                        i=ciudadActual.nodosAristasAdyacentes.nNodos;
-//                    }
-//                }else{
-//                    nodoDeListaAristas = ciudadActual.nodosAristasAdyacentes.nodoSiguiente(nodoDeListaAristas);   
-//                    i--;
-//                }
-//        }
-//
-//
-//
-//        for (int i = 1; i < array.length; i++) {
-//
-//            array[i] = array[i] / sumatoria;     
-//        }
-//        
-//    
-//    }
     
     public void recorrerTodasLasCiudades(Hormiga hormiga, ListaVertices vertices) {
         

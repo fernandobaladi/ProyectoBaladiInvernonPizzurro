@@ -25,7 +25,11 @@ public class ListaAristas {
     public NodoArista getpFirst() {
         return pFirst;
     }
-
+    
+    public int getnNodos() {
+        return 13;
+    }
+    
     public void setpFirst(NodoArista pFirst) {
         this.pFirst = pFirst;
     }

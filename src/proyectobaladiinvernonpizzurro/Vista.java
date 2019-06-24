@@ -53,7 +53,7 @@ public class Vista extends javax.swing.JFrame {
         int AntsNum=0, Iterations=0, βValue, αValue;
         double ρValue, cityDistance;
         String cityName;
-               
+        Hormiga[] arrayHormiga = new Hormiga[AntsNum];
         
         JButton jButton1 = new javax.swing.JButton();
         ListaVertices listaDeCiudades = new ListaVertices("Lista de ciudades");
@@ -62,7 +62,7 @@ public class Vista extends javax.swing.JFrame {
         JLabel Cities[] = new JLabel [20];        
         private Image ant = new ImageIcon("ant .png").getImage();
         Cities_ Cities_[] = new Cities_ [20];        
-        //distanceMatrix distanceMatrix = new distanceMatrix();
+        distanceMatrix distanceMatrix = new distanceMatrix();
         boolean deleteCity = false;
         File archivo = new File("archivo.txt");
         Tests Test = new Tests();
@@ -248,6 +248,8 @@ public class Vista extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(800, 700));
+        setPreferredSize(new java.awt.Dimension(800, 700));
         setResizable(false);
 
         jPanelGame.setBackground(new java.awt.Color(213, 204, 206));
@@ -918,9 +920,10 @@ public class Vista extends javax.swing.JFrame {
             {  
                 public void mouseClicked(MouseEvent e)  
                 {  
-                    moveAnt (ants, index, path);
+//                    moveAnt (ants, index, path);
 //                  drawCities();
-                    drawCitiesFullPanel (index+1);
+                    
+                    drawCitiesFullPanel (index+1/*, caminoDeLaHormiga(index)*/);
                 }  
             }); 
         }        
@@ -1008,7 +1011,7 @@ public class Vista extends javax.swing.JFrame {
     //Se pintan las ciudades en la pantalla de recorrido de las hormigas
     public void drawCitiesFullPanel (int antNum){
                 
-        int path[] = {3,4,1,0,12,5,6,7,9,10,8,11,3}; // tiene que colocarse que reciba la trayectoria de la hormiga y debe colocarse que recibe un array path
+        int path[] = {0,1,2,3}; // tiene que colocarse que reciba la trayectoria de la hormiga y debe colocarse que recibe un array path
         drawFullPanel(Cities_, path, antNum);
     }
     
@@ -1096,8 +1099,8 @@ public class Vista extends javax.swing.JFrame {
                     rowPos = Math.floor( ( (i-10) /2) + 1);
                     posY = (gamma * rowPos);
 //                    posY = 500 / (odd * rowPos);
-                }
-            }
+                } 
+           }
             else {
                 if (i % 2 == 0) {
                     if (i == (cityCounter - 1) ) {
@@ -1225,11 +1228,51 @@ public class Vista extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_LoadGamejButtonActionPerformed
-
+    public Hormiga crearHormiga(NodoVertice ciudadInicial, int numCiudades) {
+        
+        Hormiga h = new Hormiga(ciudadInicial, 13);
+        return h;
+        
+    }
+    
+    public int[] caminoDeLaHormiga(int numeroHormigaEnArray) {
+        
+        Hormiga h = arrayHormiga[numeroHormigaEnArray-1];
+        h.recorrerTodasLasCiudades(h, listaDeCiudades);
+        
+        h.cRecorridas = new int[listaDeCiudades.getnNodos()+1];
+        h.arrayAristas = new int[listaDeCiudades.getnNodos()];
+        h.arrayPrueba = new double[listaDeCiudades.getnNodos()];
+        
+        
+        h.cRecorridas[0] = h.ciudadInicial.id;
+        
+        for (int i = 0; i < h.cRecorridas.length - 1; i++) {
+            h.cRecorridas[i+1] = 0;
+        }
+        
+        for (int i = 0; i < h.arrayAristas.length; i++) {
+            h.arrayAristas[i] = 0;
+        }
+        
+        h.cRecorridas[listaDeCiudades.getnNodos()] = h.ciudadInicial.id;
+        h.arrayAristas[listaDeCiudades.getnNodos()-1] = h.ciudadInicial.id;
+        
+        
+        h.recorrerTodasLasCiudades(h, listaDeCiudades);
+        h.feromonasGlobal(listaDeCiudades);
+        
+        return h.cRecorridas;
+        
+    }
+    
+    
+    
+    
     private void StartGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGamejButtonActionPerformed
 
-        drawTest();
-        if (cityCounter<4) {
+        
+        if ( cityCounter < 4) {
             
             JOptionPane.showMessageDialog(null, "No puedes empezar tu partida con menos de 4 ciudades");
         }
@@ -1328,6 +1371,9 @@ public class Vista extends javax.swing.JFrame {
                             DeleteCityjButton.setEnabled(true);
                             colonia = new Hormiga[AntsNum];
                             
+                            for (int i = 0; i < AntsNum; i++) {
+                                arrayHormiga[i] = crearHormiga(listaDeCiudades.pFirst, listaDeCiudades.getnNodos());
+                            }
                             //Se asiganan los valores de los inputs en variables
                             AntsNum = Integer.parseInt(AntsNumInput.getText());
                             Iterations = Integer.parseInt(IterationsInput.getText());
@@ -1440,7 +1486,7 @@ public class Vista extends javax.swing.JFrame {
             Cities_[PosAvailable(Cities_)] = new Cities_( cityName , CityId);
             
             //Se llena la diagonal de 0s
-            //this.distanceMatrix.setDistance(cityCounter - 1, cityCounter - 1, 0);
+            this.distanceMatrix.setDistance(cityCounter - 1, cityCounter - 1, 0);
             
             //Se habilita de nuev el botón de agregar ciudad
             AddCityjButton.setEnabled(true);
@@ -1497,10 +1543,10 @@ public class Vista extends javax.swing.JFrame {
 
                             }
                             else if (cityDistanceString != null || !cityDistanceString.equals("0")) {
-                                //int col = cityCounter;
-                                //int row = cityCounter - cityLeft;                            
+                                int col = cityCounter;
+                                int row = cityCounter - cityLeft;                            
                                 cityDistance = Double.parseDouble(cityDistanceString); //se asigna la distancia (Double) a la variable
-                                //this.distanceMatrix.setDistance( row , col , cityDistance);
+                                this.distanceMatrix.setDistance( row , col , cityDistance);
                                 arrayDistances[cityCounter-cityLeft] = cityDistance;
                             
                                 cityLeft--;
@@ -1516,7 +1562,7 @@ public class Vista extends javax.swing.JFrame {
                     }while (cityLeft>0);
                 }else{
                     
-                    //this.distanceMatrix.setDistance(0, 0, 0);
+                    this.distanceMatrix.setDistance(0, 0, 0);
                 }
             }
         }
@@ -1552,7 +1598,7 @@ public class Vista extends javax.swing.JFrame {
 
     private void printResults (int ants, int iterations){
         
-        CreateLabelDynamically2 c2 = new CreateLabelDynamically2(ants, iterations);
+        CreateLabelDynamically2 c2 = new CreateLabelDynamically2(ants, iterations, arrayHormiga, listaDeCiudades);
         c2.setTitle("Resultados finales de la partida ");
         c2.setSize(700,700);
         c2.setVisible(true);
@@ -1646,14 +1692,14 @@ public class Vista extends javax.swing.JFrame {
     
 //    //Prueba 
     public void drawTest(){
-        this.cityCounter = 13;
+        this.cityCounter = 8;
         Tests test = new Tests();
         for( int i = 0 ; i < test.getCiudades().length ; i++ ){
             
             Cities_[i] = new Cities_( test.getCiudades()[i] , i );
         }
         
-//        drawFullPanel(Cities_, test.getCaminos(), 1);
+        drawFullPanel(Cities_, test.getCaminos(), 1);
     }
     
     //Eliminaar ciudad de la partida
