@@ -201,7 +201,7 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tests1 = new proyectobaladiinvernonpizzurro.Tests();
+        // tests1 = new proyectobaladiinvernonpizzurro.Tests();
         jPanelGame = new javax.swing.JPanel();
         DrawCitiesButton = new javax.swing.JButton();
         ShowTravelsButton = new javax.swing.JButton();
@@ -215,8 +215,8 @@ public class Vista extends javax.swing.JFrame {
         AntsTravelInfojLabel = new javax.swing.JLabel();
         jLayeredPane2 = new javax.swing.JLayeredPane();
         CitiesjPanel = new javax.swing.JPanel();
-        AntsjPanel = new javax.swing.JPanel();
-        AntsTraveljPanel = new javax.swing.JPanel();
+        // AntsjPanel = new javax.swing.JPanel();
+        // AntsTraveljPanel = new javax.swing.JPanel();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NewCityjPanel = new javax.swing.JPanel();
@@ -1745,7 +1745,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelNewGame;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
-    private proyectobaladiinvernonpizzurro.Tests tests1;
+    // private proyectobaladiinvernonpizzurro.Tests tests;
     private javax.swing.JTextField αValueInput;
     private javax.swing.JLabel αVariableValuejLabel;
     private javax.swing.JTextField βValueInput;
