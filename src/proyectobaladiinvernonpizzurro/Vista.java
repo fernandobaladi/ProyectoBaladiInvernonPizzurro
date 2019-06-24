@@ -29,6 +29,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.YES_NO_OPTION;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.text.PlainDocument;
 
@@ -42,7 +43,7 @@ public class Vista extends javax.swing.JFrame {
         int cityCounter = 0, CityId = 0, InsertCityPos=0;
         
         //Creación de variables para guardar los inputs del usuario
-        int AntsNum=0, Iterations, βValue, αValue;
+        int AntsNum=0, Iterations=0, βValue, αValue;
         double ρValue, cityDistance;
         String cityName;
                
@@ -69,7 +70,6 @@ public class Vista extends javax.swing.JFrame {
         DeleteCityjPanel.setVisible(false);
         AddCityjButton.setEnabled(false);
         DeleteCityjButton.setEnabled(false);
-        jPanelInstruction.setSize(720, 720);
         jPanelGame.setVisible(false);
         jPanelMain.setSize(720,720);
         jPanelMain.setVisible(true);
@@ -192,6 +192,8 @@ public class Vista extends javax.swing.JFrame {
         AntsTravelInfojLabel = new javax.swing.JLabel();
         CitiesjPanel = new javax.swing.JPanel();
         jPanelInstruction = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NewCityjPanel = new javax.swing.JPanel();
@@ -276,10 +278,10 @@ public class Vista extends javax.swing.JFrame {
                         .addGroup(jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelGameLayout.createSequentialGroup()
                                 .addComponent(AntsTravelInfojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ShowTravelsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(CitiesjPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanelGameLayout.setVerticalGroup(
             jPanelGameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -299,15 +301,26 @@ public class Vista extends javax.swing.JFrame {
         jPanelInstruction.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Instrucciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 24))); // NOI18N
         jPanelInstruction.setPreferredSize(new java.awt.Dimension(600, 500));
 
+        jTextArea2.setColumns(20);
+        jTextArea2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
         javax.swing.GroupLayout jPanelInstructionLayout = new javax.swing.GroupLayout(jPanelInstruction);
         jPanelInstruction.setLayout(jPanelInstructionLayout);
         jPanelInstructionLayout.setHorizontalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
+            .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanelInstructionLayout.setVerticalGroup(
             jPanelInstructionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 598, Short.MAX_VALUE)
+            .addGroup(jPanelInstructionLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jPanelNewGame.setBackground(new java.awt.Color(213, 204, 206));
@@ -771,7 +784,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jPanelGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -790,7 +803,9 @@ public class Vista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void NewGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewGamejButtonActionPerformed
-                
+
+        InstructionsjButton.setEnabled(true);
+        
         if (jPanelNewGame.isVisible() == false) {
         
             initializeComponents();
@@ -825,7 +840,9 @@ public class Vista extends javax.swing.JFrame {
                 DefaultValuesButton.setEnabled(true);
                 βValueInput.setEditable(false);
                 αValueInput.setEditable(false);
-                ρValueInput.setEditable(false);                
+                ρValueInput.setEditable(false);  
+                AntsTravelInfojLabel.setVisible(false);
+                ShowTravelsButton.setVisible(false);
                 cityCounter=0;
                 CityId=0;
     }
@@ -857,7 +874,9 @@ public class Vista extends javax.swing.JFrame {
 
     private void InstructionsjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InstructionsjButtonActionPerformed
         
-        jPanelInstruction.setVisible(true);        
+        jPanelInstruction.setVisible(true); 
+        jPanelNewGame.setVisible(false);
+        jPanelMain.setVisible(false);
         
                 
     }//GEN-LAST:event_InstructionsjButtonActionPerformed
@@ -906,6 +925,7 @@ public class Vista extends javax.swing.JFrame {
                 Cities_[i].CityPosition(AsignPositionX(i,cityCounter), AsignPositionY(i,cityCounter));
                 name.setBounds(Cities_[i].posX , Cities_[i].posY + 40, 100 , 20 );
                 name.setText(Cities_[i].name);
+                name.setBackground(new java.awt.Color(213,204,206));
                 name.setVisible(true);
                 name.setOpaque(true);
                 CitiesjPanel.add(Cities_[i].label);
@@ -1078,6 +1098,7 @@ public class Vista extends javax.swing.JFrame {
                         jPanelNewGame.setVisible(false);
                         jPanelGame.setVisible(true);
                         jPanelMain.setVisible(false);
+                        InstructionsjButton.setEnabled(false);
                                                 
                         for (int i = 0; i < colonia.length; i++) {
                             Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter, listaDeCiudades);
@@ -1350,6 +1371,9 @@ public class Vista extends javax.swing.JFrame {
 
     private void DrawCitiesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DrawCitiesButtonActionPerformed
         
+        AntsTravelInfojLabel.setVisible(true);
+        ShowTravelsButton.setVisible(true);
+        
         drawCitiesPanel();
         drawAnts();
         drawCities();
@@ -1358,9 +1382,19 @@ public class Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_DrawCitiesButtonActionPerformed
 
     private void ShowTravelsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShowTravelsButtonActionPerformed
-       
+        
+        printResults (AntsNum, Iterations);
+        
     }//GEN-LAST:event_ShowTravelsButtonActionPerformed
 
+    private void printResults (int ants, int iterations){
+        
+        CreateLabelDynamically2 c2 = new CreateLabelDynamically2(ants, iterations);
+        c2.setTitle("Resultados finales de la partida ");
+        c2.setSize(700,700);
+        c2.setVisible(true);
+     
+    }
     //Creación de los botones de las ciuades en la pantalla de eliminar ciudad 
     private void drawButtonCities (Cities_[] cities) {
          
@@ -1514,9 +1548,12 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
+    private javax.swing.JPanel jPanelInstruction1;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelNewGame;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField αValueInput;
     private javax.swing.JLabel αVariableValuejLabel;
     private javax.swing.JTextField βValueInput;
