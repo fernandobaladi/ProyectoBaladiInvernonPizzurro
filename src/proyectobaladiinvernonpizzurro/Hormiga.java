@@ -11,126 +11,276 @@ package proyectobaladiinvernonpizzurro;
  */
 public class Hormiga {
     public int nCiudades;
-    public ListaVertices verticesPorRecorrer = new ListaVertices("Lista para recordar los vértices que faltan por recorrer");
+    public int[] cRecorridas;
     public NodoVertice ciudadInicial;
     public NodoVertice ciudadActual;
     
     public int alfa = 1;
     public int beta = 1;
+    
+    public double Q = 1;
+    public double ro = 0.5;
 
-    public Hormiga(NodoVertice ciudadInicial, int nCiudades, ListaVertices vertices) {
+    public Hormiga(NodoVertice ciudadInicial, int nCiudades) {
         this.ciudadInicial = ciudadInicial;
         this.ciudadActual = ciudadInicial;
         this.nCiudades = nCiudades;
+        this.cRecorridas = new int[nCiudades+1];
         
-        NodoVertice nodoAuxiliar = vertices.pFirst;
-        
-        for (int i = 0; i < this.nCiudades; i++) {
-            if(nodoAuxiliar.id==ciudadInicial.id){
-                nodoAuxiliar = nodoAuxiliar.pNext;
-            }
-            else{
-                verticesPorRecorrer.agregarAlFinal(nodoAuxiliar.etiqueta, nodoAuxiliar.id);
-                nodoAuxiliar = nodoAuxiliar.pNext;
-            }
+        for (int i = 0; i < this.cRecorridas.length; i++) {
+            this.cRecorridas[i] = 0;
         }
-        nodoAuxiliar = verticesPorRecorrer.pFirst;
-        /*for (int i = 0; i < verticesPorRecorrer.nNodos; i++) {
-            System.out.println(nodoAuxiliar.etiqueta);
-            nodoAuxiliar = nodoAuxiliar.pNext;
-        }*/
     }
     
-    public void irASiguienteCiudad(ListaVertices vertices) {
+    
+    public int costo = 0;
+    public int[] arrayAristas;
+    
+    
+    
+    public void irASiguienteCiudad(ListaVertices vertices, int númeroDeCiudadesYaRecorridas) {
         
-        
-        NodoArista nodoDeListaAristas = ciudadActual.nodosAristasAdyacentes.primerNodo();
-        double[] array = new double[verticesPorRecorrer.nNodos + 1];
+        System.out.println("\n\n\n...................................");//..................
+
+        NodoArista nodoDeListaAristas = ciudadActual.nodosAristasAdyacentes.primerNodo(); 
+        double[] array = new double[ciudadActual.nodosAristasAdyacentes.nNodos + 1];
         array[0] = 0;
+
+
         double sumatoria = 0;
-        
-        ingresarProbabilidadEnElArray(array, sumatoria, nodoDeListaAristas);
-        
-         
+
+        for (int i = 0; i < ciudadActual.nodosAristasAdyacentes.nNodos; i++) {
+
+            double qlq = (double) 1/nodoDeListaAristas.distancia;
+            double numero =  Math.pow(nodoDeListaAristas.feromonas, alfa) * Math.pow(qlq, beta);
+
+            array[i+1] = numero;
+            sumatoria += array[i+1];
+
+            nodoDeListaAristas = ciudadActual.nodosAristasAdyacentes.nodoSiguiente(nodoDeListaAristas);
+        }
+
+
+        for (int i = 1; i < array.length; i++) {
+
+            array[i] = array[i] / sumatoria;     
+        }
+
+
+
         //el array ahora seria algo asi como [0, 0.23, 0.47, 0.15, 0.15]
-        int idCiudad = escogeCiudad(array);
-        
+
+        double[] array2 = new double[array.length];
+        array2[0] = 0;
+
+        for (int i = 0; i < array.length-1; i++) {
+            array2[i+1] = array[i+1] + array2[i];
+        }
+
+
+        array2[array2.length-1] = 1 ;
+
+
+
+        System.out.println("");//.....................
+
+
+        double random = Math.random();
+        System.out.println("RANDOM: " + random);
+
+
+        System.out.println("");//.....................
+
+        int contador = 0;
+
+        System.out.println("");//.....................
+
+
+
+        while (! (random >= array2[contador] && random <= array2[contador+1])) {
+            contador++;
+        }
+
+        System.out.println("CONTADOR: " + contador);
+
+
+        System.out.println("\n");//.......................
+
+
+
+        //el contador es el numero de ciudad en la lista de aristas a la cual fue la hormiga
+        NodoArista nodo = ciudadActual.nodosAristasAdyacentes.primerNodo();
+
+        for (int i = 0; i < contador; i++) {
+            nodo = nodo.pNext;
+        }
+
+        int idCiudad = nodo.id;
+
+
+        //para que no se repitan las ciudades
+        boolean delWhile = false;
+
+        while (delWhile == false) {
+
+            for (int i = 0; i < cRecorridas.length; i++) {
+
+                if (cRecorridas[i] == idCiudad) {
+
+                    i = cRecorridas.length;
+                    delWhile = false;
+
+                } else {
+                    delWhile = true;
+                }
+            }
+
+
+            if (delWhile == false) {
+
+                random = Math.random();
+                contador = 0;
+                nodo = ciudadActual.nodosAristasAdyacentes.primerNodo();
+
+                while (! (random >= array2[contador] && random <= array2[contador+1])) {
+                    contador++;
+                    System.out.println("qlq");
+                }
+
+                for (int i = 0; i < contador; i++) {
+                    nodo = nodo.pNext;
+                }
+                idCiudad = nodo.id;
+            }
+        }
+
+
+        cRecorridas[númeroDeCiudadesYaRecorridas + 1] = idCiudad;
+
+
+
+        System.out.println("NUEVO CONTADOR: " + contador);
+
+        costo += nodo.distancia;
+
+        arrayAristas[númeroDeCiudadesYaRecorridas] = nodo.id;
+
+
         NodoVertice nodoSiguiente = vertices.pFirst;
-        while (nodoSiguiente.id!=idCiudad) {
+
+        while (nodoSiguiente.id != idCiudad) {
             nodoSiguiente = nodoSiguiente.pNext;
         }
-        this.setCiudadActual(nodoSiguiente);
+
+
+        ciudadActual = nodoSiguiente;
+
+
         System.out.println(nodoSiguiente.etiqueta);
         System.out.println(nodoSiguiente.id);
-        verticesPorRecorrer.eliminarPorID(nodoSiguiente.id);
-        
-        
-        
-    }
 
 
-    public NodoVertice getCiudadActual() {
-        return ciudadActual;
-    }
+        System.out.println("\n\nLista de los id:");
+        for (int i = 0; i < cRecorridas.length; i++) {
+            System.out.println(cRecorridas[i]);
+        }
 
-    public void setCiudadActual(NodoVertice ciudadActual) {
-        this.ciudadActual = ciudadActual;
-    }
- 
-    public boolean hayQueRecorrer(NodoArista nodoArista){
+
+        System.out.println("\n\nLista de los id de aristas:");
+        for (int i = 0; i < arrayAristas.length; i++) {
+            System.out.println(arrayAristas[i]);
+        }
         
-        NodoVertice nodoAuxiliar = verticesPorRecorrer.pFirst;
-        for (int i = 0; i < this.verticesPorRecorrer.nNodos; i++) {
-            if (nodoAuxiliar.id == nodoArista.id) {
-                return true;
+        
+        
+        
+
+
+        //para regresar a la primera ciudad
+        //.............................................................
+        if (cRecorridas[cRecorridas.length - 2] != 0) {
+            
+            nodo = ciudadActual.nodosAristasAdyacentes.primerNodo();
+
+            while (nodo.id != cRecorridas[0]) {
+                nodo = nodo.pNext;
             }
-            nodoAuxiliar = nodoAuxiliar.pNext;
-        }
-        return false;
-    }
-    
-    public boolean isFull(double[] array){
-    
-        for (int i = 1; i < array.length; i++) {
-            if (array[i]==0) {
-                return false;
+
+            idCiudad = nodo.id;
+            costo += nodo.distancia;
+            
+            //cRecorridas[cRecorridas.length - 1] += idCiudad;
+            //arrayAristas[númeroDeCiudadesYaRecorridas] = nodo.id;
+
+            nodoSiguiente = vertices.pFirst;
+            while (nodoSiguiente.id != idCiudad) {
+                nodoSiguiente = nodoSiguiente.pNext;
             }
+
+            ciudadActual = nodoSiguiente;
+            
         }
-        return true;
+        
     }
     
-    public int escogeCiudad (double array[]){
     
     
-    NodoVertice nodoAuxiliar = verticesPorRecorrer.pFirst; //De este nodo auxiliar se obtendran los demás id para la matriz
-        double[][] matriz = new double[array.length][2];
-        matriz[0][1] = 0; //A la derecha del Array estará el id de la ciudad a la que hay que visitar y la izquierda el de la probabilidad
-        matriz[0][0] = nodoAuxiliar.id;
-        System.out.println("Orden del random = " + matriz[1][0]);
+    
+    public void actualizarFeromonas(int costo, ListaVertices vertices) {
         
-        for (int i = 0; i < array.length-2; i++) {
-            System.out.println("array len: " + array.length + "matriz len: " + matriz.length + "nodo aux: " + nodoAuxiliar.id + "array i: " + array[i+1] + "matriz i: " + matriz[i][1] );
-            nodoAuxiliar = nodoAuxiliar.pNext;
-            matriz[i+1][0] = nodoAuxiliar.id;
-            matriz[i+1][1] = array[i+1] + matriz[i][1];
-            System.out.println("Orden del random2 = " + matriz[i+1][1]);
+        for (int i = 0; i < arrayAristas.length; i++) {
+        
+            NodoVertice nodoV = vertices.pFirst;
+
+            while (nodoV.id != cRecorridas[i]) {
+                nodoV = nodoV.pNext;
+            }
+
+
+            NodoArista nodoA = nodoV.nodosAristasAdyacentes.pFirst;
+
+            while (nodoA.id != arrayAristas[i]) {
+                nodoA = nodoA.pNext;
+            }
+
+
+            if (nodoA == nodoV.nodosAristasAdyacentes.pFirst) {
+
+                nodoV.nodosAristasAdyacentes.pFirst.feromonas = Q / costo;
+
+            } else {
+
+                NodoArista nodoAristaAuxiliar = nodoV.nodosAristasAdyacentes.pFirst;
+                while (nodoAristaAuxiliar.pNext != nodoA) {
+                    nodoAristaAuxiliar = nodoAristaAuxiliar.pNext;
+                }
+
+                nodoAristaAuxiliar.pNext.feromonas = Q / costo;
+            }
+       
         }
         
-        
-        matriz[matriz.length-1][0] = -1;
-        matriz[matriz.length-1][1] = 1;
-        double random = Math.random();
-        System.out.println(random + " este es el random");
-        
+    }
     
-        int i=0;
-        while ((random >= matriz[i][1] && random <= matriz[i+1][0])) {
-            i++;
+    
+    
+    public void feromonasGlobal(ListaVertices vertices) {
+        
+        NodoVertice nodoV = vertices.pFirst;
+        NodoArista nodoA = nodoV.nodosAristasAdyacentes.pFirst;
+        
+        for (int i = 0; i < vertices.nNodos; i++) {
+            
+            nodoV.nodosAristasAdyacentes.pFirst.feromonas = (1 - ro) * nodoA.feromonas;
+            
+            for (int j = 0; j < nodoV.nodosAristasAdyacentes.nNodos - 1; j++) {
+                
+                nodoA.pNext.feromonas = (1 - ro) * nodoA.feromonas;
+                nodoA = nodoA.pNext;
+            }
+            
+            nodoV = nodoV.pNext;
         }
-        
-        int idCiudad = (int) matriz[i-1][0];
-        return idCiudad;
-    
     }
     
     
@@ -165,4 +315,15 @@ public class Hormiga {
         
     
     }
+    
+    public void recorrerTodasLasCiudades(Hormiga hormiga, ListaVertices vertices) {
+        
+        for (int i = 0; i < nCiudades - 1; i++) {
+            hormiga.irASiguienteCiudad(vertices, i);
+        }
+        
+        actualizarFeromonas(this.costo, vertices);
+    }
+    
+    
 }

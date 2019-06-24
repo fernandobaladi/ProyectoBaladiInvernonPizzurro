@@ -32,6 +32,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.text.PlainDocument;
+import javax.swing.UIManager;
+import javax.swing.text.PlainDocument;
+import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -57,7 +64,15 @@ public class Vista extends javax.swing.JFrame {
         Cities_ Cities_[] = new Cities_ [20];        
         //distanceMatrix distanceMatrix = new distanceMatrix();
         boolean deleteCity = false;
-        Tests Test = new Tests();         
+        File archivo = new File("archivo.txt");
+        Tests Test = new Tests();
+        Archivo a = new Archivo();
+        
+        
+        //jajajajajajjaa matriz de distancias para la lista
+        double[][] matrizDistancias = new double[20][20];
+        
+        
     
     public Vista() {
              
@@ -186,6 +201,7 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        tests1 = new proyectobaladiinvernonpizzurro.Tests();
         jPanelGame = new javax.swing.JPanel();
         DrawCitiesButton = new javax.swing.JButton();
         ShowTravelsButton = new javax.swing.JButton();
@@ -194,6 +210,13 @@ public class Vista extends javax.swing.JFrame {
         jPanelInstruction = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
+        DrawCitiesButton = new javax.swing.JButton();
+        ShowTravelsButton = new javax.swing.JButton();
+        AntsTravelInfojLabel = new javax.swing.JLabel();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
+        CitiesjPanel = new javax.swing.JPanel();
+        AntsjPanel = new javax.swing.JPanel();
+        AntsTraveljPanel = new javax.swing.JPanel();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NewCityjPanel = new javax.swing.JPanel();
@@ -677,6 +700,11 @@ public class Vista extends javax.swing.JFrame {
         SavejButton.setText("Guardar");
         SavejButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(122, 168, 2), 2, true));
         SavejButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        SavejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SavejButtonActionPerformed(evt);
+            }
+        });
 
         LoadGamejButton.setBackground(new java.awt.Color(164, 225, 3));
         LoadGamejButton.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -1067,7 +1095,107 @@ public class Vista extends javax.swing.JFrame {
     }
     
     private void LoadGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadGamejButtonActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        FileNameExtensionFilter filtroTXT = new FileNameExtensionFilter("*.TXT", "txt");
+        fc.setFileFilter(filtroTXT);
+        int seleccion = fc.showOpenDialog(this);
+        if (seleccion == JFileChooser.APPROVE_OPTION ) {
+
+
+            archivo = fc.getSelectedFile();
+
+            String contenido = a.loadGame(archivo);
+            String auxEtiquetaCiudadVertice, auxIdCiudadVertice, auxDistancia, auxFeromonas, auxIdCiudadArista, auxEtiquetaCiudadArista;
+            try {
+
+                BufferedReader bf = new BufferedReader(new FileReader(fc.getSelectedFile().toString()));
+                String aux;
+                String bfRead = bf.readLine();
+                aux = bfRead;
+
+                // arreglo = aux.split(",", 3);
+                while (aux != null) {
+
+                    if (aux.equals("ciudades")) {
+                        int count=0;
+                        do {
+                            aux = bf.readLine();
+                            if (!aux.equals("fin_ciudades")) {
+                                
+                                String[] arreglo = aux.split(",", 2);
+                                auxEtiquetaCiudadVertice = arreglo[0];
+                                Cities_[count].name = arreglo[0];
+                                auxIdCiudadVertice = arreglo[1];
+                                int idCiudad = Integer.parseInt(auxIdCiudadVertice);
+                                Cities_[count].ID = idCiudad;
+                              listaDeCiudades.agregarAlFinal(auxEtiquetaCiudadVertice, idCiudad);
+                            }
+
+                        } while (!aux.equals("fin_ciudades"));
+
+                    }
+                    if (aux.equalsIgnoreCase("fin_ciudades")) {
+                        do {
+
+                            aux = bf.readLine();
+                            if (!aux.equals("fin_caminos")) {
+
+                                String[] arreglo2 = aux.split(",", 4);
+                                auxDistancia = arreglo2[0];
+                                auxFeromonas = arreglo2[1];
+                                auxIdCiudadArista = arreglo2[2];
+                                auxEtiquetaCiudadArista = arreglo2[3];
+                                int distancia = Integer.parseInt(auxDistancia), feromonas = Integer.parseInt(auxFeromonas), idCiudad = Integer.parseInt(auxIdCiudadArista);
+
+
+                                /*for (int i = 1; i < listaDeCiudades.nNodos; i++) {
+
+                                }*/
+                            }
+
+                        } while (!aux.equals("fin_caminos"));
+
+                    }
+                    if (aux.equalsIgnoreCase("fin_caminos")) {
+                        do {
+                            aux = bf.readLine();
+                            αValue = Integer.parseInt(aux);
+                        } while (!aux.equals("fin_alpha"));
+                    }
+                    if (aux.equalsIgnoreCase("fin_alpha")) {
+                        do {
+                            aux = bf.readLine();
+                            βValue = Integer.parseInt(aux);
+                        } while (!aux.equals("fin_beta"));
+                    }
+                    if (aux.equalsIgnoreCase("fin_beta")) {
+                        do {
+                            aux = bf.readLine();
+                            ρValue = Double.parseDouble(aux);
+                        } while (!aux.equals("fin_ro"));
+                    }
+                    if (aux.equalsIgnoreCase("fin_ro")) {
+                        do {
+                            aux = bf.readLine();
+                            AntsNum = Integer.parseInt(aux);
+                        } while (!aux.equals("fin_nHormigas"));
+                    }
+                    if (aux.equalsIgnoreCase("fin_nHormigas")) {
+                        do {
+                            aux = bf.readLine();
+                            Iterations = Integer.parseInt(aux);
+                        } while (aux != null);
+                    }
+                    aux = bf.readLine();
+                }
+
+            } catch (Exception e) {
+                System.out.println("No se pudo leer el archivo.");
+            }
+            jPanelInstruction.setVisible(true);
+            
+
+        }
     }//GEN-LAST:event_LoadGamejButtonActionPerformed
 
     private void StartGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGamejButtonActionPerformed
@@ -1101,9 +1229,10 @@ public class Vista extends javax.swing.JFrame {
                         InstructionsjButton.setEnabled(false);
                                                 
                         for (int i = 0; i < colonia.length; i++) {
-                            Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter, listaDeCiudades);
-                            colonia[i]=h;
+                            //Hormiga h = new Hormiga(escogerCiudadDeHormiga(),cityCounter, listaDeCiudades);
+                            //colonia[i]=h;
                         }
+                                              
                     }
                 }
             }
@@ -1192,6 +1321,7 @@ public class Vista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GameOptionsValidationButtonActionPerformed
 
+    
     private void AddCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddCityjButtonActionPerformed
         
         CityNameValidationButton.setEnabled(true);
@@ -1260,6 +1390,8 @@ public class Vista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AntsNumInputActionPerformed
 
+    double[] arrayDistances = new double[20];
+    
     private void ConfirmNewCityjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmNewCityjButtonActionPerformed
                 
         if (CityNameInput.isEditable()) {
@@ -1274,7 +1406,9 @@ public class Vista extends javax.swing.JFrame {
             ConfirmNewCityjButton.setEnabled(false);
 
              // Aca se debe añadir la nueva ciudad al Arreglo ( Array ) 
-             
+             for (int i = 0; i < arrayDistances.length; i++) {
+                arrayDistances[i] = 0;
+            }
             Cities_[PosAvailable(Cities_)] = new Cities_( cityName , CityId);
             
             //Se llena la diagonal de 0s
@@ -1339,7 +1473,8 @@ public class Vista extends javax.swing.JFrame {
                                 //int row = cityCounter - cityLeft;                            
                                 cityDistance = Double.parseDouble(cityDistanceString); //se asigna la distancia (Double) a la variable
                                 //this.distanceMatrix.setDistance( row , col , cityDistance);
-
+                                arrayDistances[cityCounter-cityLeft] = cityDistance;
+                            
                                 cityLeft--;
                             }
                             else if (Double.parseDouble(cityDistanceString) <= 0) {
@@ -1393,10 +1528,63 @@ public class Vista extends javax.swing.JFrame {
         c2.setTitle("Resultados finales de la partida ");
         c2.setSize(700,700);
         c2.setVisible(true);
-        
-     
     }
-    //Creación de los botones de las ciuades en la pantalla de eliminar ciudad 
+    
+    private void SavejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavejButtonActionPerformed
+    
+        if (!archivo.exists()) {
+        try {
+            archivo.createNewFile();
+        } catch (IOException ex) {
+            
+        }
+        }
+
+       
+                try {
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(archivo));
+                    bw.write("ciudades");
+                    bw.newLine();
+                    NodoVertice nodoVerticeAuxiliar = listaDeCiudades.pFirst;
+                    for (int i = 0; i < listaDeCiudades.nNodos; i++) {
+                        bw.write( nodoVerticeAuxiliar.etiqueta+ "," + nodoVerticeAuxiliar.id);
+                        bw.newLine();
+                        nodoVerticeAuxiliar = nodoVerticeAuxiliar.pNext;
+                    }
+                    bw.write("fin_ciudades");
+                    bw.newLine();
+                    nodoVerticeAuxiliar = listaDeCiudades.pFirst;
+                    for (int i = 0; i < listaDeCiudades.nNodos; i++) {
+                        NodoArista nodoAristaAuxiliar = nodoVerticeAuxiliar.nodosAristasAdyacentes.pFirst;
+                        for (int j = 0; j < 10; j++) {
+                            bw.write( nodoAristaAuxiliar.distancia+ "," + nodoAristaAuxiliar.feromonas + "," + nodoAristaAuxiliar.id + "," + nodoAristaAuxiliar.etiqueta);
+                            bw.newLine(); 
+                        }
+                            
+                    }
+                    bw.write("fin_caminos");
+                    bw.newLine();
+                    bw.write(αValue);
+                    bw.newLine();
+                    bw.write("fin_alpha");
+                    bw.newLine();
+                    bw.write(βValue);
+                    bw.newLine();
+                    bw.write("fin_beta");
+                    bw.newLine();
+                    bw.write(String.valueOf(ρValue));
+                    bw.newLine();
+                    bw.write(AntsNum);
+                    bw.newLine();
+                    bw.write(Iterations);
+
+                    bw.close();
+                } catch (IOException ex) {
+                }
+        
+        
+    }//GEN-LAST:event_SavejButtonActionPerformed
+
     private void drawButtonCities (Cities_[] cities) {
          
         //Creación de los botones de ciudades
@@ -1489,6 +1677,7 @@ public class Vista extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -1547,6 +1736,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
     private javax.swing.JPanel jPanelInstruction1;
@@ -1555,6 +1745,7 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelNewGame;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
+    private proyectobaladiinvernonpizzurro.Tests tests1;
     private javax.swing.JTextField αValueInput;
     private javax.swing.JLabel αVariableValuejLabel;
     private javax.swing.JTextField βValueInput;

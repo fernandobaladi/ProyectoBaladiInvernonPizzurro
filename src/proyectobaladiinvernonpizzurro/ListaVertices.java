@@ -38,6 +38,10 @@ public class ListaVertices {
         this.pLast = pLast;
     }
     
+    public int getnNodos() {
+        //por ahora 6
+        return 6;
+    }
     
     
     public boolean esVacio(){
