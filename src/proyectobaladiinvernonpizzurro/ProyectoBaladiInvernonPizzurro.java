@@ -19,6 +19,208 @@ public class ProyectoBaladiInvernonPizzurro {
      */
     public static void main(String[] args) {
         Vista v= new Vista();
+        ListaVertices vertices = new ListaVertices("Vertices");
+        vertices.agregarAlFinal("Bogotá", 1);
+        vertices.agregarAlFinal("Caracas", 2);
+        vertices.agregarAlFinal("Maracay", 3);
+        vertices.agregarAlFinal("Apure", 4);
+        vertices.agregarAlFinal("Nueva York", 5);
+        vertices.agregarAlFinal("Miami", 6);
+        vertices.agregarAlFinal("Orlando", 7);
+        vertices.agregarAlFinal("Mexico", 8);
+        vertices.agregarAlFinal("California", 9);
+        vertices.agregarAlFinal("Boston", 10);
+        vertices.agregarAlFinal("Sucre", 11);
+        vertices.agregarAlFinal("Houston", 12);
+        vertices.agregarAlFinal("Merida", 13);
+        
+        
+        //Orlando, Mexico, California, Boston, Sucre, Houston, Merida
+        
+        //bogota 1
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(10, "Caracas", 2);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(15, "Maracay", 3);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(20, "Apure", 4);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(25, "Nueva York", 5);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Miami", 6);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //caracas 2
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(10, "Bogotá", 1);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(35, "Maracay", 3);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(40, "Apure", 4);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(45, "Nueva York", 5);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Miami", 6);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //maracay 3
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(15, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(35, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(55, "Apure", 4);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(60, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Miami", 6);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //apure 4
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(20, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(40, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(55, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(70, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //new york 5
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(25, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(45, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(60, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(70, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //miami 6
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //orlando 7
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //mexico 8
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //california 9
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //boston 10
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //sucre 11
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //houston 12
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Merida", 13);
+        
+        //merida 13
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Orlando", 7);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Mexico", 8);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "California", 9);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Boston", 10);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Sucre", 11);
+        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Houston", 12);
+        
+        
+        v.listaDeCiudades = vertices;
         v.setVisible(true);         
         v.setResizable(false);
         v.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,56 +235,6 @@ public class ProyectoBaladiInvernonPizzurro {
         
         
         ProyectoBaladiInvernonPizzurro proyecto = new ProyectoBaladiInvernonPizzurro();
-        ListaVertices vertices = new ListaVertices("Vertices");
-        vertices.agregarAlFinal("Bogotá", 1);
-        vertices.agregarAlFinal("Caracas", 2);
-        vertices.agregarAlFinal("Maracay", 3);
-        vertices.agregarAlFinal("Apure", 4);
-        vertices.agregarAlFinal("Nueva York", 5);
-        vertices.agregarAlFinal("Miami", 6);
-        
-        //bogota
-        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(10, "Caracas", 2);
-        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(15, "Maracay", 3);
-        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(20, "Apure", 4);
-        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(25, "Nueva York", 5);
-        vertices.pFirst.nodosAristasAdyacentes.agregarAlFinal(30, "Miami", 6);
-        
-        //caracas
-        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(10, "Bogotá", 1);
-        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(35, "Maracay", 3);
-        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(40, "Apure", 4);
-        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(45, "Nueva York", 5);
-        vertices.pFirst.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Miami", 6);
-        
-        //maracay
-        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(15, "Bogotá", 1);
-        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(35, "Caracas", 2);
-        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(55, "Apure", 4);
-        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(60, "Nueva York", 5);
-        vertices.pFirst.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Miami", 6);
-        
-        //apure
-        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(20, "Bogotá", 1);
-        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(40, "Caracas", 2);
-        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(55, "Maracay", 3);
-        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(70, "Nueva York", 5);
-        vertices.pFirst.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Miami", 6);
-        
-        //new york
-        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(25, "Bogotá", 1);
-        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(45, "Caracas", 2);
-        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(60, "Maracay", 3);
-        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(70, "Apure", 4);
-        vertices.pFirst.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Miami", 6);
-        
-        //miami
-        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(30, "Bogotá", 1);
-        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(50, "Caracas", 2);
-        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(65, "Maracay", 3);
-        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(75, "Apure", 4);
-        vertices.pFirst.pNext.pNext.pNext.pNext.pNext.nodosAristasAdyacentes.agregarAlFinal(80, "Nueva York", 5);
-        
         
         Hormiga h = new Hormiga(vertices.pFirst.pNext, vertices.nNodos);//1
         proyecto.crearHormigaYRecorrer(vertices, h);//2
@@ -106,14 +258,14 @@ public class ProyectoBaladiInvernonPizzurro {
     
     //este metodo hace todo, hace que la hormiga recorra todas las ciudades y actualiza
     //las feromonas
+   //este metodo hace todo, hace que la hormiga recorra todas las ciudades y actualiza
+    //las feromonas
     public void crearHormigaYRecorrer(ListaVertices vertices, Hormiga h) {
         
         //Hormiga h = new Hormiga(vertices.pFirst.pNext, vertices.nNodos);;
         
         h.cRecorridas = new int[vertices.getnNodos()+1];
         h.arrayAristas = new int[vertices.getnNodos()];
-        
-        
         
         h.cRecorridas[0] = h.ciudadInicial.id;
         
@@ -133,8 +285,14 @@ public class ProyectoBaladiInvernonPizzurro {
         
         
         h.recorrerTodasLasCiudades(h, vertices);
+        
+        
+        
         h.feromonasGlobal(vertices);
         
+        
+        
     }
+    
     
 }

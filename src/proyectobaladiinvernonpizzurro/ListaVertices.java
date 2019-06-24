@@ -40,7 +40,7 @@ public class ListaVertices {
     
     public int getnNodos() {
         //por ahora 6
-        return 6;
+        return 13;
     }
     
     
