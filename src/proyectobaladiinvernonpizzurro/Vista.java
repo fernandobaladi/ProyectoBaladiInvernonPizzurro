@@ -201,7 +201,7 @@ public class Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        // tests1 = new proyectobaladiinvernonpizzurro.Tests();
+        tests1 = new proyectobaladiinvernonpizzurro.Tests();
         jPanelGame = new javax.swing.JPanel();
         DrawCitiesButton = new javax.swing.JButton();
         ShowTravelsButton = new javax.swing.JButton();
@@ -210,13 +210,6 @@ public class Vista extends javax.swing.JFrame {
         jPanelInstruction = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        DrawCitiesButton = new javax.swing.JButton();
-        ShowTravelsButton = new javax.swing.JButton();
-        AntsTravelInfojLabel = new javax.swing.JLabel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        CitiesjPanel = new javax.swing.JPanel();
-        // AntsjPanel = new javax.swing.JPanel();
-        // AntsTraveljPanel = new javax.swing.JPanel();
         jPanelNewGame = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         NewCityjPanel = new javax.swing.JPanel();
@@ -255,7 +248,6 @@ public class Vista extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 700));
         setResizable(false);
 
         jPanelGame.setBackground(new java.awt.Color(213, 204, 206));
@@ -812,7 +804,7 @@ public class Vista extends javax.swing.JFrame {
                 .addComponent(jPanelGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanelMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -824,7 +816,7 @@ public class Vista extends javax.swing.JFrame {
                     .addComponent(jPanelGame, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addComponent(jPanelInstruction, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelMain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
 
         pack();
@@ -913,8 +905,11 @@ public class Vista extends javax.swing.JFrame {
     public void drawAnts () {
             
         Ants_ ants[] = new Ants_[AntsNum];
+        int path[] = {3,4,1,0,12,5,6,7,9,10,8,11};
         
         for (int i=0; i < AntsNum; i++) {
+            
+            int pos = findCity (1, Cities_);
             ants[i] = new Ants_(i ,(i*100) , (i+1)); // debe recibir las posiciones iniciales de cada hormiga 
             final int index =  i;
             
@@ -923,7 +918,7 @@ public class Vista extends javax.swing.JFrame {
             {  
                 public void mouseClicked(MouseEvent e)  
                 {  
-                    ants[index].label.setLocation(400, 100);
+                    moveAnt (ants, index, path);
 //                  drawCities();
                     drawCitiesFullPanel (index+1);
                 }  
@@ -939,6 +934,39 @@ public class Vista extends javax.swing.JFrame {
         } 
         
         repaintPanel();
+    }
+    
+    public void moveAnt (Ants_[] ants, int index, int [] path) {
+
+        int aux = 0, cont=0;
+        
+        for (int i = 0; i < path.length; i++){
+        do {
+           int pos = findCity (path[i], Cities_);
+           ants[index].label.setLocation(Cities_[i].posX, Cities_[i].posY);
+           
+           
+               
+               cont ++;
+           }while (cont< 10000);
+        }
+        
+        
+    }
+    
+    public int findCity (int id, Cities_[] cities){
+    
+        int aux = 0;
+        
+        for (int i=0; i< cities.length; i++){
+        
+            if (cities[i].ID == id) {
+            
+                aux = i;
+                break;
+            }
+        }
+        return aux;
     }
     
     //Se pintan las ciudades en la pantalla de juego
@@ -980,7 +1008,7 @@ public class Vista extends javax.swing.JFrame {
     //Se pintan las ciudades en la pantalla de recorrido de las hormigas
     public void drawCitiesFullPanel (int antNum){
                 
-        int path[] = {3,2,1,0}; // tiene que colocarse que reciba la trayectoria de la hormiga y debe colocarse que recibe un array path
+        int path[] = {3,4,1,0,12,5,6,7,9,10,8,11,3}; // tiene que colocarse que reciba la trayectoria de la hormiga y debe colocarse que recibe un array path
         drawFullPanel(Cities_, path, antNum);
     }
     
@@ -1200,7 +1228,7 @@ public class Vista extends javax.swing.JFrame {
 
     private void StartGamejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGamejButtonActionPerformed
 
-        //drawTest();
+        drawTest();
         if (cityCounter<4) {
             
             JOptionPane.showMessageDialog(null, "No puedes empezar tu partida con menos de 4 ciudades");
@@ -1617,16 +1645,16 @@ public class Vista extends javax.swing.JFrame {
     }
     
 //    //Prueba 
-//    public void drawTest(){
-//        this.cityCounter = 13;
-//        Tests test = new Tests();
-//        for( int i = 0 ; i < test.getCiudades().length ; i++ ){
-//            
-//            Cities_[i] = new Cities_( test.getCiudades()[i] , i );
-//        }
-//        
-////        drawFullPanel(Cities_, test.getCaminos(), 1);
-//    }
+    public void drawTest(){
+        this.cityCounter = 13;
+        Tests test = new Tests();
+        for( int i = 0 ; i < test.getCiudades().length ; i++ ){
+            
+            Cities_[i] = new Cities_( test.getCiudades()[i] , i );
+        }
+        
+//        drawFullPanel(Cities_, test.getCaminos(), 1);
+    }
     
     //Eliminaar ciudad de la partida
     public void deleteCity (JButton button, Cities_[] cities, int pos){
@@ -1736,16 +1764,14 @@ public class Vista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanelGame;
     private javax.swing.JPanel jPanelInstruction;
-    private javax.swing.JPanel jPanelInstruction1;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPanel jPanelMenu;
     private javax.swing.JPanel jPanelNewGame;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea2;
-    // private proyectobaladiinvernonpizzurro.Tests tests;
+    private proyectobaladiinvernonpizzurro.Tests tests1;
     private javax.swing.JTextField αValueInput;
     private javax.swing.JLabel αVariableValuejLabel;
     private javax.swing.JTextField βValueInput;

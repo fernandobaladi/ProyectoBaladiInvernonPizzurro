@@ -10,15 +10,15 @@ package proyectobaladiinvernonpizzurro;
  */
 public class Tests {
     
-    String ciudades[] = {"Caracas", "valencia", "madrid", "barcelona", "bogota", "santiago", "hawaii", "nj", "orlando", "miami", "houston", "daleware", "san cristobal" }; 
-    int Caminos[] = { 1 , 2 , 5 , 9 , 6 , 7 , 3 , 4 , 10 , 11 , 13 , 12 , 0 };
+        String ciudades[] = {"Bogota", "Caracas", "Maracay", "Apure", "Nueva York", "Miami", "Orlando", "Mexico", "", "", "", "", ""}; 
+    //int Caminos[] = { 1 , 2 , 5 , 9 , 6 , 7 , 3 , 4 , 10 , 11 , 13 , 12 , 0 };
     
     public Tests() {
     }
 
-    public int[] getCaminos() {
-        return Caminos;
-    }
+//    public int[] getCaminos() {
+//        return Caminos;
+//    }
 
     public String[] getCiudades() {
         return ciudades;
